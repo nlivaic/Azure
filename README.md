@@ -6,6 +6,7 @@
 
 ## Structure
 
+```
 Azure Account
     Subscription #1
         Resource Group #1
@@ -13,3 +14,4 @@ Azure Account
     Subscription #2
         Resource Group #3
         Resource Group #4
+```
