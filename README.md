@@ -25,7 +25,7 @@
 ## Structure
 
 ```
-Azure Account
+Azure Tenant
     Subscription #1
         Resource Group #1
         Resource Group #2
