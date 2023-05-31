@@ -69,9 +69,9 @@ Azure Tenant
 
 ### Problem
 
-* For an API running locally to talk to Key Vault it must have a token. To get this token typical flow must be executed (against AAD). However, to do this we must store client id and client secret somewhere and this opens up the potential for a leak.
+* For an API running locally to talk to Key Vault it must have a token. This is a token that represents the API, not the user! To get this token Client Credentials flow must be executed (against AAD). However, to do this we must store client id and client secret somewhere and this opens up the potential for a leak.
 
-![]()
+![Typical token retrieval using Client Credentials flow](https://github.com/nlivaic/Azure/assets/26722936/6a1767db-91b5-4bc6-bdcf-3798beef0e8a)
 
 ### Solution - Managed Identity
 
@@ -81,7 +81,7 @@ Azure Tenant
     * We have selected (in App Service) for our API to have a Managed Identity.
     * Telling Key Vault (or some other resource we want to access) what the Managed Identity identifier is (c/p from previous step).
 
-![]()
+![Token retrieval using Managed Identity](https://github.com/nlivaic/Azure/assets/26722936/74aa4f1f-93a2-4b23-b629-5f7785087b44)
 
 #### Running an API locally
 * Token provider will try to get the token in several ways (not sure of the precedence):
