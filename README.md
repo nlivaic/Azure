@@ -1,4 +1,4 @@
-## About Azure
+# About Azure
 * Azure Account:
     * Your overall account to start you Azure journey. Also your billing account.
     * All the concepts below exist inside Azure and are available for creation and management once you create an Azure Account.
@@ -22,7 +22,7 @@
         * Cloud Solution Provider
 * Azure Resource Groups: A logical group of resources belonging to the same application environment and lifecycle.
 
-## Structure
+# Structure
 
 ```
 Azure Tenant
@@ -64,3 +64,40 @@ Azure Tenant
     Organization == Tenant == Azure Active Directory
 * If you require logical separation of billing for users of your Azure account then you need multiple subscriptions. You get one subscription by default when you create a new Azure account. Subscription can be of four types, as mentioned earlier.
 * If you want to enable the users to do things then you issue license(s) e.g. license to be able to create VM or Azure app service. Also remember that license and Role Based Access Control (RBAC) are not same although both enable you to do things in Azure portal. But they've different nuances which you can explore on your own.
+
+## Managed Identity
+
+### Problem
+
+* For an API running locally to talk to Key Vault it must have a token. To get this token typical flow must be executed (against AAD). However, to do this we must store client id and client secret somewhere and this opens up the potential for a leak.
+
+![]()
+
+### Solution - Managed Identity
+
+* Instead of talking to AAD with your client id and secret, we can say the API has a Managed Identity. This means our API, when running inside Azure, will talk to a separate endpoint (belonging to AAD? Not sure.) that will grant a token.
+* Trust relationship is established by:
+    * The fact our API is running inside Azure (App Service? Or AAD?).
+    * We have selected (in App Service) for our API to have a Managed Identity.
+    * Telling Key Vault (or some other resource we want to access) what the Managed Identity identifier is (c/p from previous step).
+
+![]()
+
+#### Running an API locally
+* Token provider will try to get the token in several ways (not sure of the precedence):
+    1. Managed Identity
+    2. Domain account
+    3. Local login (you have to perform az login before)
+* To make the Managed Identity work while running your API inside Visual Studio locally, go to following: Visual Studio -> Options -> Azure Service Authentication
+    * Log in with a user belonging to the same tenant as the RG the KeyVault is in. Then execute a `az login`. Now you can run your API locally.
+    * The above might be a problem if our email is registered with production tenant. In that case we have to determine what other subscriptions on production tenant our email belongs to. We do this by following these steps:
+        1. Open a CLI.
+        2. `az account list`
+            * I have an account with dev tenant.
+            * Choose any subscription on dev tenant and copy the identifier. Below command is not interested in the subscription itself but rather the tenant that the subscription belongs to.
+        3. `az account set -s 2ad5208c-a7ff-462c-b76a-1787ea8c0978` - to switch to dev tenant.
+        4. `az login`
+        5. Now you can access Key Vault that is in a different tenant from where your email is registered.
+* **Please note** - if at some point you want to run another API locally, but the Key Vault (or some other resource) is in a different tenant than what you are currently logged into, you will have to perform above steps to change the subscription again,
+
+
