@@ -86,18 +86,20 @@ Azure Tenant
 #### Running an API locally
 * Token provider will try to get the token in several ways (not sure of the precedence):
     1. Managed Identity
-    2. Domain account
+    2. Visual Studio
     3. Local login (you have to perform az login before)
-* To make the Managed Identity work while running your API inside Visual Studio locally, go to following: Visual Studio -> Options -> Azure Service Authentication
-    * Log in with a user belonging to the same tenant as the RG the KeyVault is in. Then execute a `az login`. Now you can run your API locally.
-    * The above might be a problem if our email is registered with production tenant. In that case we have to determine what other subscriptions on production tenant our email belongs to. We do this by following these steps:
-        1. Open a CLI.
-        2. `az account list`
-            * I have an account with dev tenant.
-            * Choose any subscription on dev tenant and copy the identifier. Below command is not interested in the subscription itself but rather the tenant that the subscription belongs to.
-        3. `az account set -s 2ad5208c-a7ff-462c-b76a-1787ea8c0978` - to switch to dev tenant.
-        4. `az login`
-        5. Now you can access Key Vault that is in a different tenant from where your email is registered.
+* We can't make Managed Identity work when running the API locally.
+*  We can obtain the token by:
+    1. Logging in our account from inside Visual Studio locally, go to following: Visual Studio -> Options -> Azure Service Authentication
+    2. Log in with a user belonging to the same tenant as the RG the KeyVault is in. Then execute a `az login`. Now you can run your API locally.
+* The above might be a problem if our email is registered with production tenant. In that case we have to determine what other subscriptions on production tenant our email belongs to. We do this by:
+    1.logging in from Visual Studio (see previous point).
+    2. Open a CLI.
+    3. `az account list`
+        * Choose any subscription on ppropriate tenant and copy the identifier (`id`, not `tenantId`. Below command is not interested in the subscription itself but rather the tenant that the subscription belongs to.
+    4. `az account set -s 2ad5208c-a7ff-462c-b76a-1787ea8c0978` - to switch to dev tenant.
+    5. `az login`
+    6. Now you can access Key Vault that is in a different tenant from where your email is registered.
 * **Please note** - if at some point you want to run another API locally, but the Key Vault (or some other resource) is in a different tenant than what you are currently logged into, you will have to perform above steps to change the subscription again,
 
 
