@@ -93,6 +93,7 @@ Azure Tenant
     1. Logging in our account from inside Visual Studio locally, go to following: Visual Studio -> Options -> Azure Service Authentication
     2. Log in with a user belonging to the same tenant as the RG the KeyVault is in. Then execute a `az login`. Now you can run your API locally.
 * The above might be a problem if our email is registered with production tenant. In that case we have to determine what other subscriptions on production tenant our email belongs to. We do this by:
+
     1.logging in from Visual Studio (see previous point).
     2. Open a CLI.
     3. `az account list`
@@ -100,6 +101,7 @@ Azure Tenant
     4. `az account set -s 2ad5208c-a7ff-462c-b76a-1787ea8c0978` - to switch to dev tenant.
     5. `az login`
     6. Now you can access Key Vault that is in a different tenant from where your email is registered.
+  
 * **Please note** - if at some point you want to run another API locally, but the Key Vault (or some other resource) is in a different tenant than what you are currently logged into, you will have to perform above steps to change the subscription again,
 
 
