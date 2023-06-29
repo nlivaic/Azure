@@ -96,7 +96,7 @@ Azure Tenant
 
   1.logging in from Visual Studio (see previous point).
   2. Open a CLI.
-  3. `az account list`
+  3. `az account list -o table`
     * Choose any subscription on ppropriate tenant and copy the identifier (`id`, not `tenantId`. Below command is not interested in the subscription itself but rather the tenant that the subscription belongs to.
   4. `az account set -s 2ad5208c-a7ff-462c-b76a-1787ea8c0978` - to switch to dev tenant.
   5. `az login`
