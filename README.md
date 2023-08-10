@@ -101,6 +101,40 @@ Azure Tenant
   4. `az account set -s 2ad5208c-a7ff-462c-b76a-1787ea8c0978` - to switch to dev tenant.
   5. `az login`
   6. Now you can access Key Vault that is in a different tenant from where your email is registered.
+
+# Bicep
+
+## Getting Ready
+
+```
+choco install azure-cli -y
+choco install bicep -y
+Install-Module Az.Account
+Install-Module Az.Resources
+```
+
+## Creating a bicep file
+
+```
+bicep decompile --file ./<location_here>
+```
+
+## Logging in
+
+Only if you want to deploy from your local machine.
+
+```
+az login
+az account set -s <target_subscription>
+```
+
+## Deploying
+
+```
+az group create --name $RG --location $location
+az deployment group create --resource-group $RG --template-file ./arm-app-service-plan.bicep --what-if
+az resource list --resource-group $RG -o table
+```
   
 * **Please note** - if at some point you want to run another API locally, but the Key Vault (or some other resource) is in a different tenant than what you are currently logged into, you will have to perform above steps to change the subscription again,
 
