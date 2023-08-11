@@ -135,7 +135,8 @@ az group create --name $RG --location $location
 az deployment group create --resource-group $RG --template-file ./arm-app-service-plan.bicep --what-if
 az resource list --resource-group $RG -o table
 ```
-  
+
+* `--what-if` allows you to run the deployment and see the outcome without actually provisioning resources on Azure. This is great for testing.
 * **Please note** - if at some point you want to run another API locally, but the Key Vault (or some other resource) is in a different tenant than what you are currently logged into, you will have to perform above steps to change the subscription again,
 
 
