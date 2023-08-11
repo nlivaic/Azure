@@ -121,7 +121,7 @@ bicep decompile --file ./<location_here>
 
 ## Logging in
 
-Only if you want to deploy from your local machine.
+* Only if you want to deploy from your local machine. Run this yourself from the CLI.
 
 ```
 az login
@@ -129,6 +129,8 @@ az account set -s <target_subscription>
 ```
 
 ## Deploying
+
+* You will probably want to put this into a script. You can also run these yourself from the CLI to test stuff out.
 
 ```
 az group create --name $RG --location $location
