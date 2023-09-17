@@ -27,9 +27,11 @@
 ```
 Azure Tenant
     Subscription #1
+        Billing #1
         Resource Group #1
         Resource Group #2
     Subscription #2
+        Billing #2
         Resource Group #3
         Resource Group #4
 ```
