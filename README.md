@@ -59,13 +59,50 @@ Azure Tenant
     * one or several Azure Pass Sponsorship subscriptions, not linked to any credit card because these subscriptions are obtained during Microsoft trainings
     * one Visual Studio subscription (linked to a credit card) and with different quotas (of free resources) than the free subscription
 
-## Summary
+## Short Summary
 
 * If you want to work in Azure you need an Azure account. To create an Azure account you need an active email id.
 * If you want to add people/employees or machines/devices who would be part of your IT infrastructure you need a tenant/AAD. You get one tenant/AAD by default when you create an Azure account. You can create more if you require for any kind of logical separation. AAD service is a global service spanning across all locations in Azure which manages all of our AAD instances. AAD is also known as Azure Active Directory, AAD, an Azure AD instance, an AAD Instance, an Azure AD Tenant, an AAD tenant, simply tenant or an organization, etc. They all mean the same. Therefore:
     Organization == Tenant == Azure Active Directory
 * If you require logical separation of billing for users of your Azure account then you need multiple subscriptions. You get one subscription by default when you create a new Azure account. Subscription can be of four types, as mentioned earlier.
 * If you want to enable the users to do things then you issue license(s) e.g. license to be able to create VM or Azure app service. Also remember that license and Role Based Access Control (RBAC) are not same although both enable you to do things in Azure portal. But they've different nuances which you can explore on your own.
+
+# Azure AD
+
+## AAD vs Graph API
+
+* AAD is an implementation of OAuth2 (and other things). IT IS NOT A DIRECTORY. Active Directory (AD) is an identity provider and a directory service, but AAD isn't - it lacks the directory capabilities.
+* Graph API is similar to LDAP. Handles stuff like:
+    * Directory services - stores credentials and information about each user. Please note "user" might also be a printer, a computer, a service etc...
+    * When you access e.g. Sharepoint it check for licences.
+    * Getting an access token.
+
+### In-depth description of Graph API
+
+* Microsoft has lots and lots of services: Azure (which itself includes a whole bunch of services), Exchange Online (mail, calendar), SharePoint Online (files, sites), Teams (chats, meetings, channels), Entra (identity, access), Dynamics (sales, accounting), Fabric (data analytics), Intune (device management), etc. Most of those services expose APIs that an application or automation script you build can interact with.
+* Microsoft Graph is an API that sits in front of many (though not all) of Microsoft services' individual APIs, providing a single endpoint to access all of them. This simplifies things for you, so that you don't have to learn how to use as many different APIs as there are services at Microsoft. It also enables things that wouldn't otherwise be possible, like aggregating together data from multiple services in a single API request.
+* Today, Microsoft Graph includes APIs for most Microsoft 365 services (from my list earlier, this includes Exchange, SharePoint, Teams, Entra, and Intune, though there are many other not listed). If you want to build an app or automation script to create a user (Entra ID), send an email (Exchange), download a file (SharePoint), create a team (Teams), or list device management policies (Intune), you use Microsoft Graph.
+* That said, many Microsoft APIs are not behind Microsoft Graph. Notably (for this subreddit), APIs for Azure services are not behind Microsoft Graph. Most APIs for management of Azure resources (e.g. managing subscriptions, resource groups, and resources like VMs, storage accounts, etc.), are all behind the single Azure Resource Management API. In addition, most Azure service have their own APIs for data access (see list).
+* If you work primarily with Azure, you will most likely be exposed to Microsoft Graph when it comes to things related to identities: users, groups, and app identities. This is because Azure, like many Microsoft services, uses Microsoft Entra ID (a service formerly known as "Azure Active Directory") as it's single source for all identity information. Every user, group, or service principal who has access to an Azure resource is created and managed in Entra ID.
+
+## Identity Issuers
+
+* There are several possible identity issuers for users in AAD. Frequent ones are below, but there are [others](https://learn.microsoft.com/en-us/azure/active-directory/external-identities/user-properties#identities):
+  * `{TennantName}.onmicrosoft.com`: we get this identity issuer when we add any member to Azure AD.
+  * `ExternalAzureAD` : This identity issuer we get when we federate a user from one tenant to another tenant. Its user type is guest users.
+  * `MicrosoftAccount`: This identity user we get when we send invite to any user (any email it could be) and it should be accepting the invitation from user side.
+
+## User Type (Member vs Guest)
+
+* [Source](https://learn.microsoft.com/en-us/azure/active-directory/external-identities/user-properties#user-type)
+* This property indicates the relationship of the user to the host tenancy. This property can have two values:
+  * Member: This value indicates an employee of the host organization and a user in the organization's payroll. For example, this user expects to have access to internal-only sites. This user isn't considered an external collaborator.
+  * Guest: This value indicates a user who isn't considered internal to the company, such as an external collaborator, partner, or customer. Such a user isn't expected to receive a CEO's internal memo or receive company benefits, for example.
+
+## App Registrations
+
+* Any application (i.e. "Client" in OIDC terminology) that wants to use AAD to authenticate users on its behalf has to be registered in App Registrations blade.
+* Example: for Azure DevOps to be able to deploy to Azure it must be registered here (`AzureDevOpsTestTemplate1`). Just for reference, this specific example is described in more details [here](https://www.devcurry.com/2019/08/service-connection-from-azure-devops-to.html). The previous link describes the process nicely, but in case it is down try [this](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/connect-to-azure?view=azure-devops#create-an-azure-resource-manager-service-connection-with-an-existing-service-principal) one.
 
 ## Managed Identity
 
