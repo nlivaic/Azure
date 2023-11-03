@@ -122,9 +122,28 @@ Azure Tenant
 
 ### App Registrations
 
-* Any application (i.e. "Client" in OIDC terminology) that wants to use AAD to authenticate users on its behalf has to be registered in App Registrations blade.
+* Any application that wants to use AAD to authenticate users on its behalf has to be registered in App Registrations blade.
 * It is a different entity from the service principal. When you create an app in AAD, the app gets permissions. For these permissions to make sense, a service principal must be created so it can be assigned these permissions.
+* Different ways to think about application types:
+  * Single tenant vs multitenant:
+    * Will the application be used by users from only one AAD tenant (e.g. internal company app) or from multiple tenants?
+    * This is important because different endpoints are used.
+  * Native vs Web:
+    * Native apps are public clients: mobile apps, SPA apps, WPF apps.
+    * Web apps are confidential clients: web applications (Razor), APIs. They can safely store client secret on their backend.
+* Registering apps:
+  * Portal
+  * Azure CLI
+  * PowerShell
+  * Graph API
 * Example: for Azure DevOps to be able to deploy to Azure it must be registered here (`AzureDevOpsTestTemplate1`). Just for reference, this specific example is described in more details [here](https://www.devcurry.com/2019/08/service-connection-from-azure-devops-to.html). The previous link describes the process nicely, but in case it is down try [this](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/connect-to-azure?view=azure-devops#create-an-azure-resource-manager-service-connection-with-an-existing-service-principal) one.
+
+### Certificates & Secrets
+
+* Every client application needs a secret in order to identify itself to AAD, so as to be issued a token.
+* Service principal's password is also the app's secret. So if you created a service principal directly (see under [Service Principals](#service-principals)), the secret that was generated for that service principal becomes client secret of the associated app.
+* Do not allow for secrets that never expire! This also means we need a process for renewing password, but that's another story.
+* Certificates - TBD
 
 ## Managed Identity
 
