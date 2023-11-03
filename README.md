@@ -99,9 +99,31 @@ Azure Tenant
   * Member: This value indicates an employee of the host organization and a user in the organization's payroll. For example, this user expects to have access to internal-only sites. This user isn't considered an external collaborator.
   * Guest: This value indicates a user who isn't considered internal to the company, such as an external collaborator, partner, or customer. Such a user isn't expected to receive a CEO's internal memo or receive company benefits, for example.
 
-## App Registrations
+## Apps and Service Principals
+
+### Service Principals
+
+* Good overview [here ](https://app.pluralsight.com/course-player?clipId=ffe30395-69f4-4f73-832c-521c0630fb21).
+* Security entity, paired with an application in AAD. Whenever you create an application in AAD, a service principal is created along with it.
+* However it can also be created on its own, but there will still be an application paired with it. We can even login as service principal, for automation scenarios:
+
+    az ad sp create-for-rbac -n <service_principal_name>
+    az login --service-principal -u <service_principal_name> -p <password> --tenant <tenant_name>
+
+* It isn't uncommon to have a service principal without an app.
+
+* You cannot see the service principal directly in Azure.
+    * You can go to `Groups` and try to assign users, you will find the service principal.
+    * Another way to see the service principal is to go to the registered app and you can see the service principal there (under `Overview`).
+    * `az ad sp list --query []."displayName"`
+    * `az ad sp show --id "<application_client_id>"` (this works because application and service principal are paired up)
+
+* Delete service principal: `az ad sp delete --id "<application_client_id>"`. This will delete the app as well.
+
+### App Registrations
 
 * Any application (i.e. "Client" in OIDC terminology) that wants to use AAD to authenticate users on its behalf has to be registered in App Registrations blade.
+* It is a different entity from the service principal. When you create an app in AAD, the app gets permissions. For these permissions to make sense, a service principal must be created so it can be assigned these permissions.
 * Example: for Azure DevOps to be able to deploy to Azure it must be registered here (`AzureDevOpsTestTemplate1`). Just for reference, this specific example is described in more details [here](https://www.devcurry.com/2019/08/service-connection-from-azure-devops-to.html). The previous link describes the process nicely, but in case it is down try [this](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/connect-to-azure?view=azure-devops#create-an-azure-resource-manager-service-connection-with-an-existing-service-principal) one.
 
 ## Managed Identity
