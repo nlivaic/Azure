@@ -271,8 +271,8 @@ az resource list --resource-group $RG -o table
                                  ▼
         ┌────────────────────────────────────────────┐
         │               Metrics                      │
-        │  Tables: metrics, customMetrics             │
-        │  Aggregated data (request count, duration)  │
+        │  Tables: metrics, customMetrics            │
+        │  Aggregated data (request count, duration) │
         │  or custom telemetry (e.g. cache hits)     │
         └────────────────────────────────────────────┘
                                  │
