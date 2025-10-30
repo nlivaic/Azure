@@ -233,9 +233,9 @@ az resource list --resource-group $RG -o table
 ```
 | Concept                  | Azure term                      | KQL tables                 | Example query  |                                    |
 | ------------------------ | ------------------------------- | -------------------------- | -------------- | ---------------------------------- |
-| **Logs**                 | Trace & exception telemetry     | `traces`, `exceptions`     | `traces        | where severityLevel >= 2`          |
-| **Metrics**              | Numeric telemetry               | `metrics`, `customMetrics` | `customMetrics | summarize avg(value) by name`      |
-| **Traces (Distributed)** | Requests and their dependencies | `requests`, `dependencies` | `requests      | join dependencies on operation_Id` |
+|   Logs                   | Trace & exception telemetry     | `traces`, `exceptions`     | `traces        | where severityLevel >= 2`          |
+|   Metrics                | Numeric telemetry               | `metrics`, `customMetrics` | `customMetrics | summarize avg(value) by name`      |
+|   Traces (Distributed)   | Requests and their dependencies | `requests`, `dependencies` | `requests      | join dependencies on operation_Id` |
 ```
 
 ## How telemetry flows into Azure
