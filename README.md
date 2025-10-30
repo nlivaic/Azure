@@ -223,6 +223,11 @@ az resource list --resource-group $RG -o table
 
 # Observability in Azure
 
+* Azure Monitor is the umbrella service for observability in Azure. Under Azure Monitor, you have:
+  * Application Insights - telemetry from your apps
+  * Log Analytics Workspace - storage and query engine for that telemetry
+  * Metrics database - optimized store for numeric, time-series data
+
 ## How observability concepts map to Azure concepts
 
 ```
