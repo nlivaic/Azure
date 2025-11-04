@@ -78,6 +78,18 @@ Azure Tenant
 * When an organization signs up for Azure they get an Entra ID tenant. With this tenant comes one default user.
 * Entra ID =/= Active Directory.
 
+## Zero Trust
+
+* Before talkinga about zero trust model we have to describe classic trusted model:
+  * Corporate network with typical devices. Problem here is how to allow for remote workers. One approach is through VPNs, but these are only good for laptops and are problematic when used with mobile devices. Another problem is how to make sure a device that is connecting does not have malware. Solution - zero trust principle.
+* All users assumed untrustworthy unless proven otherwise. Pushes trust down to the individual level.
+* Trust based on identity, not on asset location.
+* Least privilege access - just enough permissions to perform the job.
+* Simplified, centralized management.
+* I.e. we don't neccessarily trust a device because it is on a corporate network, but rather we trust a device because it has a certain identity attached to it that we allow according to our centrally controlled policies.
+* Problem zero trust solves: having remote workers who are not on the corporate network and still being sure their approved managed devices won't cause havoc once connected by having remote control of their devices.
+* Example: access MS365 email and documents remotely without having to use VPN.
+
 ## AAD vs Graph API
 
 * AAD is an implementation of OAuth2 (and other things). IT IS NOT A DIRECTORY. Active Directory (AD) is an identity provider and a directory service, but AAD isn't - it lacks the directory capabilities.
