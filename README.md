@@ -69,6 +69,15 @@ Azure Tenant
 
 # Azure AD
 
+## Basic Concepts
+
+* Identity - who you are.
+* Authentication - proof of your identity.
+* Authorization - scopes your identity.
+* AAD provides all three.
+* When an organization signs up for Azure they get an Entra ID tenant. With this tenant comes one default user.
+* Entra ID =/= Active Directory.
+
 ## AAD vs Graph API
 
 * AAD is an implementation of OAuth2 (and other things). IT IS NOT A DIRECTORY. Active Directory (AD) is an identity provider and a directory service, but AAD isn't - it lacks the directory capabilities.
@@ -181,6 +190,15 @@ Azure Tenant
   4. `az account set -s 2ad5208c-a7ff-462c-b76a-1787ea8c0978` - to switch to dev tenant.
   5. `az login`
   6. Now you can access Key Vault that is in a different tenant from where your email is registered.
+
+# Azure Monitor
+
+* Metrics Explorer
+* Azure Monitor Logs
+* Activity Logs
+* Application Insights
+* Monitoring Insights
+* Alerts and Action Groups
 
 # Bicep
 
