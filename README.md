@@ -90,6 +90,33 @@ Azure Tenant
 * Problem zero trust solves: having remote workers who are not on the corporate network and still being sure their approved managed devices won't cause havoc once connected by having remote control of their devices.
 * Example: access MS365 email and documents remotely without having to use VPN.
 
+## MFA
+
+* Provides layered security for user identity.
+* Authenticating using at least two:
+  * Something you know: username and password.
+  * Something you have: authenticator application on your mobile phone.
+  * Something you are.
+ 
+## Conditional Access Policy
+
+* Additional layer of security.
+* If/then statements that permit or deny access depending whether the rules are met.
+* Allowing access to a user only if certain signals (conditions) are met:
+  * Is user a member of a certain group?
+  * What application are they trying to access?
+  * What is their IP location?
+  * Are they using one of their approved devices?
+* Access decisions:
+  * Grant access.
+  * Block access.
+  * Require MFA.
+* Scenarios
+  * Enforce MFA for all admins or all users.
+  * Block sign-ins using legacy authentication protocols.
+  * Grant access only to specific locations.
+  * Require organization-managed devices for application sign-in - prevent using a mobile device to access a certain application if the device is not managed by your organization.
+
 ## AAD vs Graph API
 
 * AAD is an implementation of OAuth2 (and other things). IT IS NOT A DIRECTORY. Active Directory (AD) is an identity provider and a directory service, but AAD isn't - it lacks the directory capabilities.
