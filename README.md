@@ -117,6 +117,23 @@ Azure Tenant
   * Grant access only to specific locations.
   * Require organization-managed devices for application sign-in - prevent using a mobile device to access a certain application if the device is not managed by your organization.
 
+## Passwordless authentication
+
+* Password + MFA is very safe, but inconvenient. Password is not as safe, but very convenient.
+* Passwordless authentication is very safe and convenient.
+* Skip using a password, but rather use MFA (#MFA). Same concepts apply.
+* Example: instead of using a password, log in to your mobile phone using your fingerprint (who you are) and then confirm the numerical challenge in the Authenticator app (something you know).
+* Much faster and safer than just a password, but equally convenient.
+
+## Solutions for Interacting with External Users
+
+* Entra External ID for partners (ex Azure AD B2B)
+   * Designed for interacting with internal resources.
+   * User has an identity inside of Entra ID that is managed by your org.
+* Entra External ID for customers (ex Azure AD B2C)
+  * Designed for interacting with externally facing resources, like application, websites, etc.
+  * User's identity is managed by an extenral identity provider (e.g. Google, Facebook).
+
 ## AAD vs Graph API
 
 * AAD is an implementation of OAuth2 (and other things). IT IS NOT A DIRECTORY. Active Directory (AD) is an identity provider and a directory service, but AAD isn't - it lacks the directory capabilities.
