@@ -1,4 +1,5 @@
 # About Azure
+
 * Azure Account:
     * Your overall account to start you Azure journey. Also your billing account.
     * All the concepts below exist inside Azure and are available for creation and management once you create an Azure Account.
@@ -23,6 +24,8 @@
 * Azure Resource Groups: A logical group of resources belonging to the same application environment and lifecycle.
 
 # Structure
+
+* The point of this structure is to help organizations manage and structure their resources, enforce policies and manage access control.
 
 ```
 Azure Tenant
@@ -77,13 +80,15 @@ Azure Tenant
 * AAD provides all three.
 * When an organization signs up for Azure they get an Entra ID tenant. With this tenant comes one default user.
 * Entra ID =/= Active Directory.
+* Each user can be a member in 1 and guest of up to 499 tenants (500 in total).
 
 ## Zero Trust
 
-* Before talkinga about zero trust model we have to describe classic trusted model:
+* Before talking  about zero trust model we have to describe classic trusted model:
   * Corporate network with typical devices. Problem here is how to allow for remote workers. One approach is through VPNs, but these are only good for laptops and are problematic when used with mobile devices. Another problem is how to make sure a device that is connecting does not have malware. Solution - zero trust principle.
 * All users assumed untrustworthy unless proven otherwise. Pushes trust down to the individual level.
-* Trust based on identity, not on asset location.
+* Trust based on identity, not on asset location. Identities can be validated.
+* No trusted locations.
 * Least privilege access - just enough permissions to perform the job.
 * Simplified, centralized management.
 * I.e. we don't neccessarily trust a device because it is on a corporate network, but rather we trust a device because it has a certain identity attached to it that we allow according to our centrally controlled policies.
@@ -127,6 +132,8 @@ Azure Tenant
 
 ## External Guest Access
 
+* Enables security outside of your organizational boundaries.
+* Provides visibility of external guest activity within your organizational IT borders.
 * Solutions for Interacting with External Users
    * Entra External ID for partners (ex Azure AD B2B)
       * Designed for interacting with internal resources.
@@ -139,6 +146,13 @@ Azure Tenant
      * User already has an ID with another provider and they keep using this ID. External user logs in using their current ID with their provider and that authorization is then passed into the application via a B2C directory (aka federation). Authorization is **NOT** happening inside our Entra ID.
 * Make sure to use the principle of least privilege.
 * Assign a guest user to access application if needed.
+
+## Azure AD Domain Services
+
+* Provide legacy AD features inside of Azure.
+* AAD DS is a managed service inside of Azure.
+* Integrates with Entra ID.
+* Helpful when migrating or integrating legacy applications that do not support modern protocols.
 
 ## RBAC
 
@@ -176,7 +190,14 @@ Azure Tenant
 <img alt="image" src="https://github.com/user-attachments/assets/83639512-a3c5-435d-998a-637c8c4d67e6" width="300" height="300" />
 
 * Objective: mitigate unauthorized data access.
-* Method: layered defense. If one layer is breached other layers can still hold the attacker.
+* Method: layered defense centered around defending the user data. If one layer is breached other layers can still hold the attacker.
+* Example: defending the user data:
+  * User data is central to defend.
+  * Password is a way for the user to prove their identity by providing something only they know.
+  * MFA is an additional layer of security by requiring the user to prove their identity by proving they own something only they have (mobile phone with an authenticator app).
+  * Conditional access policy to e.g. allow access only from a certain location.
+
+<img width="736" height="301" alt="image" src="https://github.com/user-attachments/assets/bb00a568-7d6b-4a49-9a50-39e20c836519" />
 
 ## AAD vs Graph API
 
