@@ -174,6 +174,7 @@ Azure Tenant
 ## Defense in depth
 
 <img width="612" height="526" alt="image" src="https://github.com/user-attachments/assets/83639512-a3c5-435d-998a-637c8c4d67e6" />
+
 * Objective: mitigate unauthorized data access.
 * Method: layered defense. If one layer is breached other layers can still hold the attacker.
 
