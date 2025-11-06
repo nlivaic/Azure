@@ -125,14 +125,51 @@ Azure Tenant
 * Example: instead of using a password, log in to your mobile phone using your fingerprint (who you are) and then confirm the numerical challenge in the Authenticator app (something you know).
 * Much faster and safer than just a password, but equally convenient.
 
-## Solutions for Interacting with External Users
+## External Guest Access
 
-* Entra External ID for partners (ex Azure AD B2B)
-   * Designed for interacting with internal resources.
-   * User has an identity inside of Entra ID that is managed by your org.
-* Entra External ID for customers (ex Azure AD B2C)
-  * Designed for interacting with externally facing resources, like application, websites, etc.
-  * User's identity is managed by an extenral identity provider (e.g. Google, Facebook).
+* Solutions for Interacting with External Users
+   * Entra External ID for partners (ex Azure AD B2B)
+      * Designed for interacting with internal resources.
+      * User has an identity inside of Entra ID that is managed by your org and created based on an external ID. 
+      * The external user already has an ID with another service or provider. Your organization initiates an invitation to that external user's ID. External user accepts the invitation and a user object is created inside your organization based on that external ID.
+      * Authorization is happening inside our Entra ID.
+   * Entra External ID for customers (ex Azure AD B2C)
+     * Designed for interacting with externally facing resources, like application, websites, etc.
+     * User's identity is managed by an extenral identity provider (e.g. Google, Facebook).
+     * User already has an ID with another provider and they keep using this ID. External user logs in using their current ID with their provider and that authorization is then passed into the application via a B2C directory (aka federation). Authorization is **NOT** happening inside our Entra ID.
+* Make sure to use the principle of least privilege.
+* Assign a guest user to access application if needed.
+
+## RBAC
+
+* Control access to resources and services based on role assigned to the user, device, application or service.
+* Built-in roles:
+  * Based on board general use case.
+  * Variations of:
+    * Owner
+    * Contributor
+    * Reader
+* Custom roles:
+  * Fine-grained, specific use cases
+  * Components:
+    * Role definitions
+    * Permissions
+    * Scope
+    * Inheritance
+* Scope:
+  * Only the permissions necessary
+  * Only the resources necessary
+  * Only to individuals when absolutely necessary (**absolutely** prefer groups).
+  * **This is the most important principle!**
+* Inheritance:
+  * The capability of custom roles to inherit permissions from other roles.
+  * The application of permission to a lower level organization construct.
+* Best practices:
+  * Least privilege: only the permissions necessary
+  * Use of roles: use built-in roles whenever possible, use custom roles with care.
+  * Role segregation: separate duties and responsibilities; avoid combining roles that grant conflicting permissions or excessive access.
+  * Resource or service scope: avoid permission sprawl. You don't want your permissions going all over the place, keep them precise.
+  * Review, audit and document: check, double check and write it down.
 
 ## AAD vs Graph API
 
