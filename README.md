@@ -70,6 +70,40 @@ Azure Tenant
 * If you require logical separation of billing for users of your Azure account then you need multiple subscriptions. You get one subscription by default when you create a new Azure account. Subscription can be of four types, as mentioned earlier.
 * If you want to enable the users to do things then you issue license(s) e.g. license to be able to create VM or Azure app service. Also remember that license and Role Based Access Control (RBAC) are not same although both enable you to do things in Azure portal. But they've different nuances which you can explore on your own.
 
+# Architecture
+
+## Regions
+
+* A region is a **set of datacenters** deployed withing a **latency-defined perimeter** and connected throught a dedicated **regional low-latency network**.
+* Geographically distributed groups of DCs.
+* Usually two or more DCs, not too far from each other (there might be some exceptions to this).
+* Each DC is connected using high-speed connection.
+* Each DC within a region is completely independent (power, cooling, networking).
+* Placed world-wide.
+* Regions are connected between themselves using Microsoft's global fiber network. Microsoft global network does not traverse public network, it is completely private.
+  * Any traffic between DCs, within Microsoft Azure or between Microsoft services such as Virtual Machines, Microsoft 365, Xbox, SQL DBs, Storage goes over Microsoft global network.
+* How to select a region:
+  * Closest to your user - better performance
+  * Features - some features are not available in all regions (especially newest features)
+  * Price - not all features have the same price across all regions
+* Region pairs
+   * Share a special relationship for enhanced resilience and disaster recovery.
+   * Extra layer of failover protection.
+   * Two closely linked regions for redundancy.
+   * Only one region gets updated at any one time.
+   * Usually within the same geographical area.
+   * If possible, the region is linked with another region in the same country but that region has to be at least 300 miles apart.
+   * Replication - some PaaS service might have automatic replication between region pairs.
+* Sovereign regions:
+  * Same as ordinary region.
+  * Isolated regions ensuring government compliance within specific jurisdictions.
+  * Not part of global Azure public cloud and are not part of Microsoft's global private fiber network. You must be approved to join.
+  * Not all services are available.
+  * Focus is on security and compliance.
+  * Only two at the moment:
+    * Azure US government - you must be part of US gvt to use these.
+    * Azure China - there is no Azure public cloud in China, so if you want to use Azure in China you must use one of Azure China sovereign regions. Operated by 3rd party. All data must stay in those data centers. Also requires your business presence in China.
+
 # Azure AD
 
 ## Basic Concepts
