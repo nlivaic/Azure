@@ -104,6 +104,25 @@ Azure Tenant
     * Azure US government - you must be part of US gvt to use these.
     * Azure China - there is no Azure public cloud in China, so if you want to use Azure in China you must use one of Azure China sovereign regions. Operated by 3rd party. All data must stay in those data centers. Also requires your business presence in China.
 
+## Availability Zones
+
+* Physical location:
+  * Each AZ is a physical location within a region. There is at least one DC per AZ.
+  * Several DCs inside one AZ do **NOT** share a building, but are very close by (several kms).
+  * This distance protects against local building-level issues (e.g., fire, cooling failure) but not against large regional events (e.g., floods, earthquakes).
+* Independence:
+  * Each AZ has independent powering, cooling and networking, so no AZ depends on another AZ for those (i.e. they share infrastructure only within that zone).
+  * Allows high availability.
+* Minimum of 3 AZs per region (but this is not available in all regions).
+* Latency within AZ is typically <1ms (rount trip latency 2ms), so it is treated as one logical unit.
+* Why use AZs?
+  * Services are replicated across multiple zones (e.g. data in Azure Storage).
+  * If one zone goes down, service is still operational.
+  * Adds redundancy to your application.
+* How to use AZs?
+  * Zonal services are services allowing us to choose an AZ within the region. E.g. VMs allow choosing what AZ we deploy to.
+  * Zone-redundant services are usually Azure PaaS services that allow automatically replicating across zones. E.g. Zone-redundant storage (ZRS) account. This has additional costs if the service has a single-zone option.
+
 # Azure AD
 
 ## Basic Concepts
