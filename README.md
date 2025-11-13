@@ -1,5 +1,43 @@
 # About Azure
 
+## Overall Structure
+
+### Resources
+
+* Basic building block in Azure.
+* Usually assigned to a region.
+* Must have a name.
+* Most resources have a cost.
+
+### Resource Groups
+
+* Logical grouping of resources.
+* Resources can be in any region.
+* All resources must be in a resource group.
+* Recommendation is to group resources with same lifecycle and access control needs.
+* Characteristics:
+  * Each resource can be in only one resource group.
+  * Resources within a resource group can be in different regions.
+  * Resources can communicate across resource groups (resource group is not an access boundary).
+  * Resources can easily be moved between resource groups.
+  * You can assign access control to a resource group and everything in it.
+  * A resource group itself has a region as it needs to store metadata about its resources.
+
+### Subscriptions
+
+* High-level billing. Useful if we want different organizational units to manage their own billing.
+* Access control.
+* Resource management.
+
+### Management Groups
+
+* Optional. Suitable for larger organization to organize subscriptions.
+* Central management for multiple subscriptions.
+* A management group can have additional management groups underneath itself.
+* Policies applied to management group are applied to all child objects.
+
+## Additional Notes
+
 * Azure Account:
     * Your overall account to start you Azure journey. Also your billing account.
     * All the concepts below exist inside Azure and are available for creation and management once you create an Azure Account.
@@ -12,7 +50,7 @@
         * Multiple subscriptions can share the Azure AD tenant.
         * **You get one tenant/AAD by default when you create an Azure account.**
 * Azure Subscription:
-    * The container where your created resources are created.
+    * The container where your resources are created.
     * Billing is per subscription.
     * Azure subscription has a trust relationship with Azure AD instance. Each subscription belongs to one tenant. Multiple subscriptions can belong to the same Azure AD tenant. You can also set specific Azure policies on subscription level. Using multiple subscriptions can be convenient for administrative/billing use, or for example sandbox and test vs production environment. It's not recommended to do a subscription per department except when for example developers having their separate subscriptions.
     * **You get one subscription by default when you create a new Azure account.**
