@@ -32,6 +32,7 @@
 ### Management Groups
 
 * Optional. Suitable for larger organization to organize subscriptions.
+* Allow better access, policies and compliance management across multiple subscriptions.
 * Central management for multiple subscriptions.
 * A management group can have additional management groups underneath itself.
 * Policies applied to management group are applied to all child objects.
@@ -154,12 +155,62 @@ Azure Tenant
 * Minimum of 3 AZs per region (but this is not available in all regions).
 * Latency within AZ is typically <1ms (rount trip latency 2ms), so it is treated as one logical unit.
 * Why use AZs?
+  * Provide fault isolation within a region.
   * Services are replicated across multiple zones (e.g. data in Azure Storage).
   * If one zone goes down, service is still operational.
   * Adds redundancy to your application.
 * How to use AZs?
   * Zonal services are services allowing us to choose an AZ within the region. E.g. VMs allow choosing what AZ we deploy to.
-  * Zone-redundant services are usually Azure PaaS services that allow automatically replicating across zones. E.g. Zone-redundant storage (ZRS) account. This has additional costs if the service has a single-zone option.
+  * Zone-redundant services are usually Azure PaaS services that allow automatically replicating across zones (this is usually an optional feature). E.g. Zone-redundant storage (ZRS) account. This has additional costs if the service has a single-zone option.
+
+# Azure Compute
+
+* On-demand computing service providing resources such as disks, processors, memory, networking and operating systems.
+* Services:
+  * VMs (IaaS)
+  * Azure App Service (PaaS)
+  * Function Apps (PaaS)
+  * Azure Container Instances (PaaS)
+  * Azure Kubernetes Service (PaaS)
+  
+## VMs
+
+* IaaS
+* Virtualized server hosted on underlying hypervisor.
+* User has full control over the virtualized server and can run almost any application.
+* Linux or Windows OS
+* Components:
+  * CPU/Memory
+  * Storage
+  * Networking
+  * OS
+  * Network Controls (Firewall)
+* Every VM must be assigned to a Virtual Network (VNet). Each VM is assigned a public and private IP address (these are created as a separate resource).
+* Configuration:
+  * VM Size = preconfigured CPU/RAM combinations, optionally GPU and Disk sizes.
+  * VM Sizes are grouped into series for different use cases.
+    * Prefix - always `Standard`
+    * Different series numbers denote how many CPUs it has.
+    * Letters denote a family:
+      * `A` - budget
+      * `B` - burst. A good option for general-purpose machines that are not running at full capacity the entire time.
+      * `D` - default general-purpose
+      * `DC` - secure/confidential variant of D-family workloads
+    * There are other elements to a name that also follow some known patterns (e.g. `C` for compute-optimized, `S` for premium storage capability)
+* Pricing:
+  * CPU/RAM:
+    * Priced per CPU/RAM by the minute. More compute results in higher costs.
+    * Priced by the minute. If you stop (deallocate) VM you are not charged for compute.
+  * Disks:
+    * Charged separately even if VM is deallocated.
+  * OS:
+    * Licensed OSs (Windows, Red Hat).
+    * Pay-as-you-go license is charged same as compute.
+  * Public IP Addresses:
+    * Charged by the hour.
+    * Pricing model depends on the SKU:
+      * Dynamic: no charge when VM is deallocated.
+      * Static: charged regarless of VM state.
 
 # Azure AD
 
