@@ -262,6 +262,62 @@ Azure Tenant
   * Containerized event-driven applications
   * Use any programming language and framework version.
 
+# Azure Virtual Networks
+
+* Core network building block in Azure. Central construct for private and public communications.
+* VNet belongs to a single region. All resources inside that VNet must be in the same region.
+* A subscription and resource groups can have multiple VNets.
+* Networking in Azure is Software Defined Network (SDN). Physical hardware is abstracted away and we have no access to it. All networking components and functions are different software configurations.
+* IP Addressing:
+  * VNet must have one or more address space(s). Subnets are then contained inside that address space.
+  * Allow for public networking: public IP addresses (IPv4 and IPv6).
+  * VMs must have private IPs. Public IPs are optional.
+  * IPs can be dynamic or static. Static IPs are extra cost even if not used.
+* Multiple communication options:
+  * Public IP addressing
+  * Communication inside a VNet is done privately.
+  * VNets can be peered privately with other Azure VNets.
+  * Hybrid networking allows for private networking with on-prem and other cloud.
+  * Communication with other managed services.
+* VNets and IP addresses can be easily scaled.
+* VNets enable high availability for our resources by peering VNets, using a load balancer or using a VPN gateway.
+* Security is facilitated by filtering (using network security groups). We can also isolate our resources with subnets and network security groups.
+
+## Network Security
+
+### Network Security Groups
+
+* Foundation of network security in Azure.
+* Type of firewall.
+* Primary traffic filter for subnets.
+* Applied on subnet or individual VM level.
+* It is a free service.
+* Allow for granular rules for fine network control:
+  * Inbound/outbound filters, e.g. by protocols and ports: TCP/UDP ports, ICMP.
+  * Allow sources and destinations: we can limit access to only certain networks and not the entire internet.
+  * Allow or deny multiple types of traffic.
+  * Priority of overlapping rules.
+  * Example: only allow RDP (TCP: 3389) access from our corporate office.
+
+### Azure Firewall
+
+* More advanced firewall services than NSGs, for multiple networks.
+* Centralized traffic control for multiple VNets.
+* Paid service, expensive.
+* Additional services compared to NSGs:
+  * Threat intelligence
+  * Advanced filtering rules (filtering traffic by domain name and not just IP addresses)
+  * URL filtering
+  * DNS proxy allowing using our own DNS
+  * Integration with on-premises networks.
+ 
+### Azure Bastion
+
+* Allows secure SSH/RDP access for private VMs.
+* If your VM has no public IP address it cannot be access from outside.
+* Azure Bastion provides a managed jump server that can access private VMs.
+* It is a fully managed Azure service deployed to a VNet. Must have a specific subnet name.
+
 # Azure AD
 
 ## Basic Concepts
