@@ -211,6 +211,56 @@ Azure Tenant
     * Pricing model depends on the SKU:
       * Dynamic: no charge when VM is deallocated.
       * Static: charged regarless of VM state.
+* Scale Sets:
+  * Centrally managed creation of auto-scaled identical VMs based on load, for availability purposes.
+  * Paired with load balancer.
+  * VM clones are created from a baseline image, with a configuration script usually deployed to each VM to help facilitate an identical setup.
+* Availability Sets:
+  * Logical groupings of VMs with separate _fault domains_ and _update domains_ with the purpose of achieving high availability. Using availability set results in your VMs being assigned to hypervisors in different racks and with different maintenance windows.
+  * Useful for multiple unique VMs that don't need auto-scaling.
+  * Fault domain is essentially a single rack connected to a single power source and cooling. If this rack fails for whatever reason, all the hypervisors running on that rack will fail also, taking the VMs down with them. Keep in mind that when you create a VM you cannot choose which hypervisor or server rack it gets placed on.
+  * Update domain is a group of hypervisors that have the same maintenance window and there is chance they might get rebooted at the same time. These hypervisors could be spread out across different server racks. If your VMs get randomly assigned to different hypervisors that are in the same update domain there is a chance your VMs might be unavailable in the same period.
+  * Max limits: 20 update domains and 3 fault domains.
+
+## App Service
+
+* Fully managed application hosting with minimal management overhead.
+* Things managed by Azure:
+  * OS
+  * Web Server (IIS, NGINX, Apache)
+  * Network management
+  * High availability
+  * Disk management
+  * Load balancers
+  * Scaling (Scale sets): OS images, configuration scripts
+* Hosting capabilities:
+  * Web apps
+  * Web jobs
+  * API apps
+
+## Container Options
+
+* Azure Container Instances:
+  * PaaS container service. Ideal for short-lived (allowing for cost control), simple workloads. Single containers only, no load-balancing/auto-scaling.
+* Azure Kubernetes Service:
+  * Open-source container orchestration.
+  * Large-scale, high-volume, high-complexity containerized workloads.
+  * Allows for more control and customization than ACI.
+  * Automatic scaling, load balancing and failover.
+  * It is in between IaaS and PaaS, allowing for more control than ACI, but also more costs.
+* Azure Container Apps:
+  * In between ACI and AKS.
+  * Fully-managed, with simplified management.
+  * Ideal for serverless and scalable microservices, with auto-scaling enabled.
+  * No access to k8s API, less customization than AKS.
+* VMs:
+  * we can also deploy containers to VMs, but that requires a lot of configuration and management.
+* App Service:
+  * Ideal for long-running web applications.
+  * Use any programming language and framework version.
+* Azure Functions:
+  * Containerized event-driven applications
+  * Use any programming language and framework version.
 
 # Azure AD
 
