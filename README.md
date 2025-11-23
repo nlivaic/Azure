@@ -22,6 +22,7 @@
   * Resources can easily be moved between resource groups.
   * You can assign access control to a resource group and everything in it.
   * A resource group itself has a region as it needs to store metadata about its resources.
+* Not a communication boundary. Resources from one RG can communicate with resources in another RG.
 
 ### Subscriptions
 
