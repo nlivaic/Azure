@@ -319,6 +319,36 @@ Azure Tenant
 * Azure Bastion provides a managed jump server that can access private VMs.
 * It is a fully managed Azure service deployed to a VNet. Must have a specific subnet name.
 
+## Network Peering
+
+* Allows connecting networks across resource groups, subscriptions and tenants.
+* Features:
+  * Speed - low latency, maximum bandwidth connection because it is routed across Microsoft's backbone.
+  * Traffic Privacy - routed across Microsoft's backbone instead of the public internet.
+  * Control Traffic between VNets - NSG, custom routes.
+
+## Azure DNS
+
+* Azure DNS Zones
+* Azure Private DNS Zones
+* Both are global services (not tied to any region).
+
+## Hybrid Connection
+
+* Connecting external resources to Azure (e.g. other cloud networks, on-prem, other Azure VNets).
+ * Site-to-Site VPN
+   * Using VPN to connect two networks over the public internet.
+ * Point-to-Site VPN
+   * Using VPN to connect a network to an individual computer over the public internet.
+   * Useful for working remotely.
+ * ExpressRoute
+   * Dedicated, private connection not using the internet, but a dedicated line.
+* Regardless of which option we choose, we will need Azure service called Virtual Network Gateway. It is a managed service inside Azure, acting as an endpoint with our hybrid connectivity options.
+
+## Azure VPN
+
+* 
+
 # Azure AD
 
 ## Basic Concepts
