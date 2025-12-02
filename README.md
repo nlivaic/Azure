@@ -370,6 +370,17 @@ Azure Tenant
 * Geo-redundant storage: replicated over multiple regions, using LRS inside a single region.
 * Geo-zone-redundant storage: replicated over multiple regions, using ZRS inside a single region.
 
+# Disks
+
+* Managed Disks are VM hard disks that are created to support VMs. These are abstracted away and you cannot access these through UI.
+* Disk types:
+  * Standard HDD - back, non-frequent access.
+  * Standard SSD - for regular workloads (web server, lightly used enterprise applications).
+  * Premium - for intensive workloads (production and performance sensitive workloads).
+  * Ultra - most demanding workloads with very low latency.
+
+ <img width="1235" height="583" alt="image" src="https://github.com/user-attachments/assets/8670bd90-c811-4b50-a115-48bdaa3195c5" />
+
 # Azure AD
 
 ## Basic Concepts
