@@ -347,7 +347,28 @@ Azure Tenant
 
 ## Azure VPN
 
-* 
+* Point-to-site
+* Point-to-point
+* Active/Passive
+* Active/Active
+
+## Azure Storage
+
+* Management plane and data plane
+* Blobs
+  * Block blob - any file.
+  * Page blob - optimized for random access, like `.vhd` files (VM hard disks).
+  * Append blob - optimized for i.e. log files.
+* Files
+* Tables
+* Queues
+
+### Redundancy options
+
+* Locally-redundant storage: replicated inside a single DC, 3 copies with independent racks, cooling and storage.
+* Zone-redundant storage: replicated inside multiple AZs (at least 3). Mitigates DC failures.
+* Geo-redundant storage: replicated over multiple regions, using LRS inside a single region.
+* Geo-zone-redundant storage: replicated over multiple regions, using ZRS inside a single region.
 
 # Azure AD
 
