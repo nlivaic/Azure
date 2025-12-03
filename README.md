@@ -355,31 +355,65 @@ Azure Tenant
 ## Azure Storage
 
 * Management plane and data plane
-* Blobs
-  * Block blob - any file.
-  * Page blob - optimized for random access, like `.vhd` files (VM hard disks).
-  * Append blob - optimized for i.e. log files.
-* Files
-* Tables
-* Queues
+* Types of storage:
+  * Blobs
+    * Block blob - any file.
+    * Page blob - optimized for random access, like `.vhd` files (VM hard disks).
+    * Append blob - optimized for i.e. log files.
+  * Files
+    * File-share solution.
+    * Support SMB and NFS.
+  * Tables
+  * Queues
+
+### Performance tiers
+* Standard:
+  * Supports all storage types listed above (blobs, files, tables, queues).
+  * Supports all redundancy options (listed below).
+* Premium:
+  * Much higher costs.
+  * These options allow for higher performance but the redundancy options are fewer (only LRS and ZRS).
+  * Supports all storage types listed above (blobs, files, tables, queues).
+  * Support aAdditional storage options:
+    * Premium block blobs:
+      * Useful for low latency blob storage workloads (IoT, AI).
+    * Premium file shares:
+      * High-performance file server applications.
+      * Supports SMB and NFS.
+    * Premium page blobs:
+      * Standalone API access
 
 ### Redundancy options
 
 * Single region:
-  * Locally-redundant storage: replicated inside a single DC or AZ, 3 copies with independent racks, cooling and storage.
-  * Zone-redundant storage: replicated inside multiple AZs (at least 3). Mitigates DC failures.
+  * Locally-redundant storage: replicated inside a single DC or AZ, 3 copies with independent racks, cooling and storage. Mitigates against a single disk failure.
+  * Zone-redundant storage: replicated inside multiple AZs (at least 3). Mitigates AZ failures.
 * Multiple regions:
-  * Geo-redundant storage: replicated over multiple regions, using LRS inside a single region.
-  * Geo-zone-redundant storage: replicated over multiple regions, using ZRS inside a single region.
+  * Geo-redundant storage: replicated in another (paired) region, using LRS inside a single region. Read-access can be configured from the secondary region for high-availability scenario, allowing for faster failover.
+  * Geo-zone-redundant storage: replicated in another (paired) region, using ZRS inside the primary region and LRS in secondary region.
 
-# Disks
+### Moving files
+
+* AzCopy - CLI tool
+* Azure Storage Explorer - GUI application
+* Azure File Sync - synchronize on-premise files.
+* Large scale migration options:
+  * Azure Data Box:
+    * Used to transfer too much data to be transfered over internet. Encrypted, rugged hard drive sent to you by Azure that you then upload your files into and ship it to Azure.
+    * Useful for initial bulk data migration, disaster recovery and transferring data too sensitive to be sent over the internet.
+  * Azure Migrate:
+    * Migrate non-Azure resources into Azure.
+    * Allows migrating servers, databases, applications and data.
+    * Entire on-premise data center can be migrated into Azure this way.
+
+### Disks
 
 * Managed Disks are VM hard disks that are created to support VMs. These are abstracted away and you cannot access these through UI.
 * Disk types:
   * Standard HDD - back, non-frequent access.
   * Standard SSD - for regular workloads (web server, lightly used enterprise applications).
-  * Premium - for intensive workloads (production and performance sensitive workloads).
-  * Ultra - most demanding workloads with very low latency.
+  * Premium SSD - for intensive workloads (production and performance sensitive workloads).
+  * Ultra SSD - most demanding workloads with very low latency.
 
  <img width="1235" height="583" alt="image" src="https://github.com/user-attachments/assets/8670bd90-c811-4b50-a115-48bdaa3195c5" />
 
