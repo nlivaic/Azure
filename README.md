@@ -365,10 +365,12 @@ Azure Tenant
 
 ### Redundancy options
 
-* Locally-redundant storage: replicated inside a single DC, 3 copies with independent racks, cooling and storage.
-* Zone-redundant storage: replicated inside multiple AZs (at least 3). Mitigates DC failures.
-* Geo-redundant storage: replicated over multiple regions, using LRS inside a single region.
-* Geo-zone-redundant storage: replicated over multiple regions, using ZRS inside a single region.
+* Single region:
+  * Locally-redundant storage: replicated inside a single DC or AZ, 3 copies with independent racks, cooling and storage.
+  * Zone-redundant storage: replicated inside multiple AZs (at least 3). Mitigates DC failures.
+* Multiple regions:
+  * Geo-redundant storage: replicated over multiple regions, using LRS inside a single region.
+  * Geo-zone-redundant storage: replicated over multiple regions, using ZRS inside a single region.
 
 # Disks
 
