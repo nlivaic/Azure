@@ -423,6 +423,10 @@ Azure Tenant
 
  <img width="1235" height="583" alt="image" src="https://github.com/user-attachments/assets/8670bd90-c811-4b50-a115-48bdaa3195c5" />
 
+ ### Azure Files
+
+ * Fully managed cloud-based file share/server solution
+
 # Azure AD
 
 ## Basic Concepts
