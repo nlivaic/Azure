@@ -365,6 +365,10 @@ Azure Tenant
     * Support SMB and NFS.
   * Tables
   * Queues
+* Storage Tiers: Hot/Cold/Cool/Arhive
+  * You can set Hot/Cold as account options.
+  * All tiers can be set on blob-level.
+  * Uploaded object can be moved between tiers even after uploading.
 
 ### Performance tiers
 * Standard:
@@ -382,6 +386,7 @@ Azure Tenant
       * Supports SMB and NFS.
     * Premium page blobs:
       * Standalone API access
+
 
 ### Redundancy options
 
@@ -409,6 +414,7 @@ Azure Tenant
 ### Disks
 
 * Managed Disks are VM hard disks that are created to support VMs. These are abstracted away and you cannot access these through UI.
+* Must be in the same region as VM.
 * Disk types:
   * Standard HDD - back, non-frequent access.
   * Standard SSD - for regular workloads (web server, lightly used enterprise applications).
