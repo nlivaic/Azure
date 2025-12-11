@@ -399,9 +399,9 @@ Azure Tenant
 
 ### Moving files
 
-* AzCopy - CLI tool
-* Azure Storage Explorer - GUI application
-* Azure File Sync - synchronize on-premise files.
+* AzCopy - CLI tool, only for Blobs and Azure Files.
+* Azure Storage Explorer - GUI application, for all types of files.
+* Azure File Sync - synchronize on-premise files, only for Azure Files.
 * Large scale migration options:
   * Azure Data Box:
     * Used to transfer too much data to be transfered over internet. Encrypted, rugged hard drive sent to you by Azure that you then upload your files into and ship it to Azure.
