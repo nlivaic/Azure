@@ -366,6 +366,8 @@ Azure Tenant
   * Tables
   * Queues
 * Storage Tiers: Hot/Cold/Cool/Arhive
+  * Cool tier is optimized for data that is not accessed frequently, but when accessed needs to be readily available.
+  * Archive tier is for long-term storage and requires a long time to become available when needed.
   * You can set Hot/Cold as account options.
   * All tiers can be set on blob-level.
   * Uploaded object can be moved between tiers even after uploading.
