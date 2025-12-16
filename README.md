@@ -29,6 +29,7 @@
 * High-level billing. Useful if we want different organizational units to manage their own billing.
 * Access control.
 * Resource management.
+* Can have a trust relationship with a single Entra ID tenant at a time. But a tenant can have trust relationships with multiple subscriptions (case where a tenant has multiple subscriptions).
 
 ### Management Groups
 
@@ -37,6 +38,15 @@
 * Central management for multiple subscriptions.
 * A management group can have additional management groups underneath itself.
 * Policies applied to management group are applied to all child objects.
+
+## Azure Resource Manager
+
+* Orchestration layer for managing resources in Azure cloud.
+* Uses REST API through:
+  * Azure CLI
+  * Azure Portal
+  * Azure Powershell
+* Talks to Azure Resource Providers. There is a separate provider for each resource (e.g. Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
 
 ## Additional Notes
 
@@ -174,7 +184,7 @@ Azure Tenant
   * Azure Container Instances (PaaS)
   * Azure Kubernetes Service (PaaS)
   
-## VMs
+## Virtual Machines (VMs)
 
 * IaaS
 * Virtualized server hosted on underlying hypervisor.
