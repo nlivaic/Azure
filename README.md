@@ -23,6 +23,8 @@
   * You can assign access control to a resource group and everything in it.
   * A resource group itself has a region as it needs to store metadata about its resources.
 * Not a communication boundary. Resources from one RG can communicate with resources in another RG.
+* Security (like Entra user permissions) can be applied on resource group level (among other levels).
+* Policies can be applied on resource group level (among other levels).
 
 ### Subscriptions
 
