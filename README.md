@@ -144,6 +144,7 @@
 
 ## Azure Cost Management
 
+* Microsoft provides an "Azure Cost Management discipline template" document. This is a starting point to better govern Azure costs and is meant to be changed to better suit needs of a particular organization.
 * We have several tools at our disposal to get insights into costs and provide predictions.
   * Calculator:
     * Calculates costs per resource based on the resource configuration and usage.
