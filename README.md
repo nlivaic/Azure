@@ -142,6 +142,25 @@
         * Cloud Solution Provider
 * Azure Resource Groups: A logical group of resources belonging to the same application environment and lifecycle.
 
+## Azure Cost Management
+
+* We have several tools at our disposal to get insights into costs and provide predictions.
+  * Calculator:
+    * Calculates costs per resource based on the resource configuration and usage.
+  * Total Cost of Ownership Calculator:
+    * Allows calculating how much you would save by moving your on-prem workload to Azure.
+  * Cost Management And Billing
+    * Cost-related Azure resource.
+    * `Cost Analysis` blade:
+      * Shows current costs, broken down by resource.
+      * Also shows cost projections.
+    * `Budgets` blade:
+      * Allows setting a budget and alerts if we reach a threshold etc.
+  * Advisor:
+    * Cost-related Azure resource.
+    * Helps to maintain our budget by analyzing our environment and providing cost-saving suggestions.
+    * We can create a weekly digest informing us how money is being spent. This saves us having to check on costs all the time.
+
 # Structure
 
 * The point of this structure is to help organizations manage and structure their resources, enforce policies and manage access control.
