@@ -145,6 +145,11 @@
 ## Azure Cost Management
 
 * Microsoft provides an "Azure Cost Management discipline template" document. This is a starting point to better govern Azure costs and is meant to be changed to better suit needs of a particular organization.
+* Typical cost-related risks:
+  * Overprovisioning - provisioning a VM that is more powerful than needed.
+  * Underutilization - having environments we don't use (e.g. dev).
+  * Overbudgeting - going over the defined budget.
+* Azure provides us with metrics and indicators we can use to build out alerts. Once we have metrics we can set indicators (e.g. we have a budget limit of 10k and if we hit 75% of that we want to trigger a warning).
 * We have several tools at our disposal to get insights into costs and provide predictions.
   * Calculator:
     * Calculates costs per resource based on the resource configuration and usage.
