@@ -1,4 +1,4 @@
-- [About Azure](#about-azure)
+- [Azure Overview](#azure-overview)
    * [Overall Structure](#overall-structure)
       + [Resources](#resources)
       + [Resource Groups](#resource-groups)
@@ -6,11 +6,11 @@
       + [Management Groups](#management-groups)
    * [Azure Resource Manager](#azure-resource-manager)
    * [Additional Notes](#additional-notes)
-- [Structure](#structure)
+   * [Azure Cost Management](#azure-cost-management)
    * [Examples](#examples)
-      + [Example 1:](#example-1)
-      + [Example 2:](#example-2)
-      + [Example 3:](#example-3)
+      + [Example 1](#example-1)
+      + [Example 2](#example-2)
+      + [Example 3](#example-3)
    * [Short Summary](#short-summary)
 - [Architecture](#architecture)
    * [Regions](#regions)
@@ -65,9 +65,23 @@
    * [How observability concepts map to Azure concepts](#how-observability-concepts-map-to-azure-concepts)
    * [How telemetry flows into Azure](#how-telemetry-flows-into-azure)
 
-# About Azure
+# Azure Overview
 
 ## Overall Structure
+
+* The point of such structure is to help organizations manage and structure their resources, enforce policies and manage access control.
+
+```
+Azure Tenant
+    Subscription #1
+        Billing #1
+        Resource Group #1
+        Resource Group #2
+    Subscription #2
+        Billing #2
+        Resource Group #3
+        Resource Group #4
+```
 
 ### Resources
 
@@ -167,38 +181,22 @@
     * Helps to maintain our budget by analyzing our environment and providing cost-saving suggestions.
     * We can create a weekly digest informing us how money is being spent. This saves us having to check on costs all the time.
 
-# Structure
-
-* The point of this structure is to help organizations manage and structure their resources, enforce policies and manage access control.
-
-```
-Azure Tenant
-    Subscription #1
-        Billing #1
-        Resource Group #1
-        Resource Group #2
-    Subscription #2
-        Billing #2
-        Resource Group #3
-        Resource Group #4
-```
-
 ## Examples
 
-### Example 1:
+### Example 1
 * Contoso decides to have a tenant with 2 subscriptions:
     * one subscription for the Prod department with Credit Card A
     * one subscription for the Dev department with Credit Card B
     * (but could also be the same Credit Card as the one of another subscription)
 * In this example, the two departments share the same Azure AD database. However, resources are isolated between departments, and budgets can be separated too.
 
-### Example 2:
+### Example 2
 * A holding company decides to have 2 tenants:
     * one tenant for subsidiary Contoso with one subscription for Dev and Prod
     * one tenant for subsidiary Fabrikam with one subscription for Dev and another subscription for Prod
 * In this example, both companies have a different Azure AD database.
 
-### Example 3:
+### Example 3
 
 * You have a tenant for your personal training. In this tenant, you can have:
     * one free Azure subscription (linked to a credit card but not charged, and can be converted to a Pay-As-You-Go subscription after the free trial)
