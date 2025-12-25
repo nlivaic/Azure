@@ -131,7 +131,9 @@ Azure Tenant
   * Azure Powershell
 * Talks to Azure Resource Providers. There is a separate provider for each resource (e.g. Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
 
-## Azure Cost Management
+## Governance and Compliance
+
+### Azure Cost Management
 
 * Microsoft provides an "Azure Cost Management discipline template" document. This is a starting point to better govern Azure costs and is meant to be changed to better suit needs of a particular organization.
 * Typical cost-related risks:
@@ -155,6 +157,16 @@ Azure Tenant
     * Optimize resource usage.
     * Helps to maintain our budget by analyzing our environment and providing cost-saving suggestions.
     * We can create a weekly digest informing us how money is being spent. This saves us having to check on costs all the time.
+   
+### Azure Policy
+
+* Policies allow us to define standards on how resources are to be created.
+* Each policy has two elements:
+  * Conditions: parameters (what?), assignment (where?)
+  * Efects: audit (check if true), enforce (make sure something is true).
+* Two types of actions: auditing and enforcement.
+* Example: we can limit resource location, VM size, mandatory tags.
+* Initiative: a number of policy definitions broguht together for a single purpose.
 
 ## Examples
 
