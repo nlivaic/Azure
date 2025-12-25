@@ -1,17 +1,17 @@
 - [Azure Overview](#azure-overview)
    * [Overall Structure](#overall-structure)
-      + [Resources](#resources)
-      + [Resource Groups](#resource-groups)
-      + [Subscriptions](#subscriptions)
-      + [Management Groups](#management-groups)
+   * [Resources](#resources)
+   * [Resource Groups](#resource-groups)
+   * [Subscriptions](#subscriptions)
+   * [Management Groups](#management-groups)
    * [Azure Resource Manager](#azure-resource-manager)
-   * [Additional Notes](#additional-notes)
    * [Azure Cost Management](#azure-cost-management)
    * [Examples](#examples)
       + [Example 1](#example-1)
       + [Example 2](#example-2)
       + [Example 3](#example-3)
    * [Short Summary](#short-summary)
+   * [Additional Notes](#additional-notes)
 - [Architecture](#architecture)
    * [Regions](#regions)
    * [Availability Zones](#availability-zones)
@@ -83,14 +83,14 @@ Azure Tenant
         Resource Group #4
 ```
 
-### Resources
+## Resources
 
 * Basic building block in Azure.
 * Usually assigned to a region.
 * Must have a name.
 * Most resources have a cost.
 
-### Resource Groups
+## Resource Groups
 
 * Logical grouping of resources.
 * Resources can be in any region.
@@ -107,14 +107,14 @@ Azure Tenant
 * Security (like Entra user permissions) can be applied on resource group level (among other levels).
 * Policies can be applied on resource group level (among other levels).
 
-### Subscriptions
+## Subscriptions
 
 * High-level billing. Useful if we want different organizational units to manage their own billing.
 * Access control.
 * Resource management.
 * Can have a trust relationship with a single Entra ID tenant at a time. But a tenant can have trust relationships with multiple subscriptions (case where a tenant has multiple subscriptions).
 
-### Management Groups
+## Management Groups
 
 * Optional. Suitable for larger organization to organize subscriptions.
 * Allow better access, policies and compliance management across multiple subscriptions.
@@ -131,31 +131,6 @@ Azure Tenant
   * Azure Powershell
 * Talks to Azure Resource Providers. There is a separate provider for each resource (e.g. Microsoft.Compute, Microsoft.Network, Microsoft.Storage).
 
-## Additional Notes
-
-* Azure Account:
-    * Your overall account to start you Azure journey. Also your billing account.
-    * All the concepts below exist inside Azure and are available for creation and management once you create an Azure Account.
-* Azure AD:
-    * A service for authentication and authorization.
-    * Tenants:
-        * Azure AD service can have multiple Azure Active Directories (AAD, a.k.a. tenant).
-        * Every tenant is linked to a single Azure AD instance.
-        * A tenant is associated with a single identity (person, company, or organization) and can own one or several **subscriptions**. You can think of a tenant as a way to manage the employees of the company.
-        * Multiple subscriptions can share the Azure AD tenant.
-        * **You get one tenant/AAD by default when you create an Azure account.**
-* Azure Subscription:
-    * The container where your resources are created.
-    * Billing is per subscription.
-    * Azure subscription has a trust relationship with Azure AD instance. Each subscription belongs to one tenant. Multiple subscriptions can belong to the same Azure AD tenant. You can also set specific Azure policies on subscription level. Using multiple subscriptions can be convenient for administrative/billing use, or for example sandbox and test vs production environment. It's not recommended to do a subscription per department except when for example developers having their separate subscriptions.
-    * **You get one subscription by default when you create a new Azure account.**
-    * Subscription can be of four types as per below list:
-        * Free
-        * Pay-as-you-go
-        * Enterprise agreement
-        * Cloud Solution Provider
-* Azure Resource Groups: A logical group of resources belonging to the same application environment and lifecycle.
-
 ## Azure Cost Management
 
 * Microsoft provides an "Azure Cost Management discipline template" document. This is a starting point to better govern Azure costs and is meant to be changed to better suit needs of a particular organization.
@@ -171,13 +146,13 @@ Azure Tenant
     * Allows calculating how much you would save by moving your on-prem workload to Azure.
   * Cost Management And Billing
     * Cost-related Azure resource.
-    * `Cost Analysis` blade:
-      * Shows current costs, broken down by resource.
-      * Also shows cost projections.
-    * `Budgets` blade:
-      * Allows setting a budget and alerts if we reach a threshold etc.
+    * Used to analyze and manage cloud spending.
+    * `Cost Analysis` blade: Shows current costs (broken down by resource), cost projections and usage patterns.
+    * `Budgets` blade: Allows setting a budget and alerts if we reach a threshold; predicting and managing future cloud spending.
+    * `Cost Alerts` blade: set spending alerts.
   * Advisor:
     * Cost-related Azure resource.
+    * Optimize resource usage.
     * Helps to maintain our budget by analyzing our environment and providing cost-saving suggestions.
     * We can create a weekly digest informing us how money is being spent. This saves us having to check on costs all the time.
 
@@ -211,6 +186,31 @@ Azure Tenant
     Organization == Tenant == Azure Active Directory
 * If you require logical separation of billing for users of your Azure account then you need multiple subscriptions. You get one subscription by default when you create a new Azure account. Subscription can be of four types, as mentioned earlier.
 * If you want to enable the users to do things then you issue license(s) e.g. license to be able to create VM or Azure app service. Also remember that license and Role Based Access Control (RBAC) are not same although both enable you to do things in Azure portal. But they've different nuances which you can explore on your own.
+
+## Additional Notes
+
+* Azure Account:
+    * Your overall account to start you Azure journey. Also your billing account.
+    * All the concepts below exist inside Azure and are available for creation and management once you create an Azure Account.
+* Azure AD:
+    * A service for authentication and authorization.
+    * Tenants:
+        * Azure AD service can have multiple Azure Active Directories (AAD, a.k.a. tenant).
+        * Every tenant is linked to a single Azure AD instance.
+        * A tenant is associated with a single identity (person, company, or organization) and can own one or several **subscriptions**. You can think of a tenant as a way to manage the employees of the company.
+        * Multiple subscriptions can share the Azure AD tenant.
+        * **You get one tenant/AAD by default when you create an Azure account.**
+* Azure Subscription:
+    * The container where your resources are created.
+    * Billing is per subscription.
+    * Azure subscription has a trust relationship with Azure AD instance. Each subscription belongs to one tenant. Multiple subscriptions can belong to the same Azure AD tenant. You can also set specific Azure policies on subscription level. Using multiple subscriptions can be convenient for administrative/billing use, or for example sandbox and test vs production environment. It's not recommended to do a subscription per department except when for example developers having their separate subscriptions.
+    * **You get one subscription by default when you create a new Azure account.**
+    * Subscription can be of four types as per below list:
+        * Free
+        * Pay-as-you-go
+        * Enterprise agreement
+        * Cloud Solution Provider
+* Azure Resource Groups: A logical group of resources belonging to the same application environment and lifecycle.
 
 # Architecture
 
