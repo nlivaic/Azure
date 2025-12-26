@@ -174,7 +174,17 @@ Azure Tenant
 
 * Name-value pair meant to group resources per different criteria. Some examples of criteria might be owner team name, environment, and to assist automation scripts.
 * Tags can be applied on subscription, resource group or resource level.
+* Tags are not inherited across levels.
 * Tags can be edited.
+
+### Locks
+
+* Reduce chance for accidental deletion of a resource.
+* Two types:
+  * Read-only: user can view and delete the resource but cannot change it. Useful for resources where changes would be disruptive (e.g. databases).
+  * Delete: user can view and change the resource but cannot delete it. Useful for resources that have to get updates frequently, but must not get deleted by accident (e.g. VMs).
+* Can be scoped on subscription, resource group or resource level.
+* Locks are inherited.
 
 ## Examples
 
