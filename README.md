@@ -5,7 +5,9 @@
    * [Subscriptions](#subscriptions)
    * [Management Groups](#management-groups)
    * [Azure Resource Manager](#azure-resource-manager)
-   * [Azure Cost Management](#azure-cost-management)
+   * [Governance and Compliance](#governance-and-compliance)
+      + [Azure Cost Management](#azure-cost-management)
+      + [Azure Policy](#azure-policy)
    * [Examples](#examples)
       + [Example 1](#example-1)
       + [Example 2](#example-2)
@@ -167,6 +169,12 @@ Azure Tenant
 * Two types of actions: auditing and enforcement.
 * Example: we can limit resource location, VM size, mandatory tags.
 * Initiative: a number of policy definitions broguht together for a single purpose.
+
+### Tags
+
+* Name-value pair meant to group resources per different criteria. Some examples of criteria might be owner team name, environment, and to assist automation scripts.
+* Tags can be applied on subscription, resource group or resource level.
+* Tags can be edited.
 
 ## Examples
 
