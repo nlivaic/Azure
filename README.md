@@ -125,6 +125,7 @@ Azure Tenant
 * Central management for multiple subscriptions.
 * A management group can have additional management groups underneath itself.
 * Policies applied to management group are applied to all child objects.
+* Support parent-child relationship so one management group can be a parent to another.
 
 ## Azure Resource Manager
 
@@ -170,7 +171,7 @@ Azure Tenant
   * Efects: audit (check if true), enforce (make sure something is true).
 * Two types of actions: auditing and enforcement.
 * Example: we can limit resource location, VM size, mandatory tags.
-* Initiative: a number of policy definitions broguht together for a single purpose.
+* Initiative: a number of policy definitions brought together for a single purpose.
 
 ### Tags
 
