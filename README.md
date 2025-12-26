@@ -8,6 +8,8 @@
    * [Governance and Compliance](#governance-and-compliance)
       + [Azure Cost Management](#azure-cost-management)
       + [Azure Policy](#azure-policy)
+      + [Tags](#tags)
+      + [Locks](#locks)
    * [Examples](#examples)
       + [Example 1](#example-1)
       + [Example 2](#example-2)
