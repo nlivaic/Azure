@@ -126,6 +126,7 @@ Azure Tenant
 * A management group can have additional management groups underneath itself.
 * Policies applied to management group are applied to all child objects.
 * Support parent-child relationship so one management group can be a parent to another.
+* Azure Policy and Azure RBAC can be assigned to 
 
 ## Azure Resource Manager
 
