@@ -174,7 +174,7 @@ Azure Tenant
 
 ### Tags
 
-* Name-value pair meant to group resources per different criteria. Some examples of criteria might be owner team name, environment, and to assist automation scripts.
+* Name-value pair meant to group resources per different criteria. Some examples of criteria might be owner team name, environment, and to assist automation scripts (e.g. to shutdown development environment over the weekend).
 * Tags can be applied on subscription, resource group or resource level.
 * Tags are not inherited across levels.
 * Tags can be edited.
