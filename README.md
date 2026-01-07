@@ -576,6 +576,40 @@ Azure Tenant
 * When an organization signs up for Azure they get an Entra ID tenant. With this tenant comes one default user.
 * Entra ID =/= Active Directory.
 * Each user can be a member in 1 and guest of up to 499 tenants (500 in total).
+* Entra entities: users, groups, applications, devices.
+
+## RBAC
+
+* Answer a question: Who can do what where?
+  * Who: security principals
+  * What: role assignments
+  * Where: scope
+* There are two different types of roles:
+  * Azure roles
+  * Entra roles
+
+### Azure Roles
+
+* Define access that Entra entities can have to different Azure resources (e.g. VMs).
+* Roles can be assigned on different scopes (management group, subscription, resource group, resource). Roles are inherited by lower-level scopes.
+* Roles:
+  * Owner - can perform any action (create, view, manage, delete) on the resource.
+  * Reader - can view resource.
+  * Contributor - can create and manage resource.
+  * User Access Administrator - can delegate access to resource.
+* Custom roles are also supported.
+
+### Entra Roles
+
+* Special roles for specifically allowing access to manage Entra entity objects inside the tenant.
+  * Essentially allows us to grant another Entra entity an ability to manage other Entra entities within the tenant.
+* Scope is just one: tenant.
+* Roles:
+  * Global Admin Role - provides us with the ability to manage Entra entities entirely. Root level role.
+  * Billing Administrator - can provide billing tasks.
+  * User Administrator - can manage users and roles.
+  * Helpdesk Administrator - can reset passwords for users. Remember users should have the ability to do Self-Service Password Reset themselves, but this role is available is SSPR is not enabled.
+* Custom roles are also supported.
 
 ## Zero Trust
 
