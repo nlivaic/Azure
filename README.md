@@ -591,18 +591,28 @@ Azure Tenant
 ### Azure Roles
 
 * Define access that Entra entities can have to different Azure resources (e.g. VMs).
+* Evaluated by ARM.
 * Roles can be assigned on different scopes (management group, subscription, resource group, resource). Roles are inherited by lower-level scopes.
-* Roles:
-  * Owner - can perform any action (create, view, manage, delete) on the resource.
-  * Reader - can view resource.
-  * Contributor - can create and manage resource.
-  * User Access Administrator - can delegate access to resource.
+* Roles can be further divided into two following groups:
+  * Privileged Administrator Roles - these roles allow resource management and are more general in nature.
+    * Owner - can perform any action (create, view, manage, delete, delegate access) on the resource.
+    * Reader - can view resource.
+    * Contributor - can create and manage resource.
+    * User Access Administrator - can delegate access to resource.
+* Job Function Roles - these roles are more specific to different job functions that can be performed on a resource. There is a large number of such roles and they are more focused. They are as varied as:
+  * Key Vault Administrator
+  * Sql Db Contributor
+  * Azure Service Bus Data Owner
 * Custom roles are also supported.
+* Each Azure role has actions and data actions:
+  * Actions - allow control plane management, which means performing operations that affect configuration or state of the resource such as creating, updating or deleting.
+  * Data actions - allow performing operations on the data stored or processed on the resource, such as reading, writing or deleting the data.
 
 ### Entra Roles
 
 * Special roles for specifically allowing access to manage Entra entity objects inside the tenant.
   * Essentially allows us to grant another Entra entity an ability to manage other Entra entities within the tenant.
+* Evaluated by Entra.
 * Scope is just one: tenant.
 * Roles:
   * Global Admin Role - provides us with the ability to manage Entra entities entirely. Root level role.
