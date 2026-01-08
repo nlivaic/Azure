@@ -899,11 +899,11 @@ az resource list --resource-group $RG -o table
 ## How observability concepts map to Azure concepts
 
 ```
-| Concept                  | Azure term                      | KQL tables                 | Example query  |                                    |
-| ------------------------ | ------------------------------- | -------------------------- | -------------- | ---------------------------------- |
-|   Logs                   | Trace & exception telemetry     | `traces`, `exceptions`     | `traces        | where severityLevel >= 2`          |
-|   Metrics                | Numeric telemetry               | `metrics`, `customMetrics` | `customMetrics | summarize avg(value) by name`      |
-|   Traces (Distributed)   | Requests and their dependencies | `requests`, `dependencies` | `requests      | join dependencies on operation_Id` |
+| Concept              | OTel Concept       | Azure term                      | KQL tables                        | Notes                                                             |
+| ---------------------|--------------------|-------------------------------- |-----------------------------------|-------------------------------------------------------------------|
+| Logs                 | Structured records | Trace & exception telemetry     | logs, applicationLogs, exceptions |                                                                   |
+| Metrics              | Measurements       | Numeric telemetry               | metrics, customMetrics            |                                                                   |
+| Traces (Distributed) | Spans              | Requests and their dependencies | traces, requests, dependencies    | Inbound spans become requests; outbound calls become dependencies |
 ```
 
 ## How telemetry flows into Azure
