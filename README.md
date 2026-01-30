@@ -404,6 +404,14 @@ Azure Tenant
 
 # Azure Virtual Networks
 
+* General characteristics:
+  * Isolated networks
+  * Has an address space
+  * Allow for subnet segmentation
+  * Connected devices
+  * Routing settings
+  * DHCP
+  * DNS
 * Core network building block in Azure. Central construct for private and public communications.
 * VNet belongs to a single region. All resources inside that VNet must be in the same region.
 * A subscription and resource groups can have multiple VNets.
@@ -422,6 +430,36 @@ Azure Tenant
 * VNets and IP addresses can be easily scaled.
 * VNets enable high availability for our resources by peering VNets, using a load balancer or using a VPN gateway.
 * Security is facilitated by filtering (using network security groups). We can also isolate our resources with subnets and network security groups.
+
+## Connectivity
+
+* VNet has outbound public connectivity by default.
+* Inbound connectivity must be manually enabled by creating a rule on Network Security Group.
+* Resources (e.g. VM) must have a NIC card. This NIC card will have an IP Configuration. NIC configuration consists of:
+  * Assignment of IP space - it can be a private or public IP address.
+  * VNet and a subnet that is connected to our NIC card. That's how it will get an IP address statically or dynamically assigned.
+  * DNS configuration (separately from VNet, so we can configure DNS configuration separately for this NIC or we can inherit from VNet).
+  * Private IP - used to connect to the resource.
+  * Public IP - separate Azure resource allowing public connectivity from outside this VNet.
+  * Network Security Group (NSG) - stateful firewall that we can associate with NICs.
+ 
+### Routing
+
+
+### Subnets
+
+* Isolated private network space.
+* All the connected devices get a private IP address.
+* All these resources live in a private zone of Azure.
+* A connected device can get a public IP address configured as well. This resource lives in public zone of Azure.
+
+### Routing
+
+* System-default routes that are immutable.
+  * Betwen connected devices in a single subnet.
+  * Between subnets in a single VNet.
+  * Allowing outbound traffic from within VNets.
+* Custom routes that are user defined.
 
 ## Network Security
 
@@ -491,7 +529,7 @@ Azure Tenant
 * Active/Passive
 * Active/Active
 
-## Azure Storage
+# Azure Storage
 
 * Management plane and data plane
 * Types of storage:
@@ -511,7 +549,7 @@ Azure Tenant
   * All tiers can be set on blob-level.
   * Uploaded object can be moved between tiers even after uploading.
 
-### Performance tiers
+## Performance tiers
 * Standard:
   * Supports all storage types listed above (blobs, files, tables, queues).
   * Supports all redundancy options (listed below).
@@ -528,8 +566,7 @@ Azure Tenant
     * Premium page blobs:
       * Standalone API access
 
-
-### Redundancy options
+## Redundancy options
 
 * Single region:
   * Locally-redundant storage: replicated inside a single DC or AZ, 3 copies with independent racks, cooling and storage. Mitigates against a single disk failure.
@@ -538,7 +575,7 @@ Azure Tenant
   * Geo-redundant storage: replicated in another (paired) region, using LRS inside a single region. Read-access can be configured from the secondary region for high-availability scenario, allowing for faster failover.
   * Geo-zone-redundant storage: replicated in another (paired) region, using ZRS inside the primary region and LRS in secondary region.
 
-### Moving files
+## Moving files
 
 * AzCopy - CLI tool, only for Blobs and Azure Files.
 * Azure Storage Explorer - GUI application, for all types of files.
@@ -552,7 +589,7 @@ Azure Tenant
     * Allows migrating servers, databases, applications and data.
     * Entire on-premise data center can be migrated into Azure this way.
 
-### Disks
+## Disks
 
 * Managed Disks are VM hard disks that are created to support VMs. These are abstracted away and you cannot access these through UI.
 * Must be in the same region as VM.
@@ -564,7 +601,7 @@ Azure Tenant
 
  <img width="1235" height="583" alt="image" src="https://github.com/user-attachments/assets/8670bd90-c811-4b50-a115-48bdaa3195c5" />
 
- ### Azure Files
+ ## Azure Files
 
  * Fully managed cloud-based file share/server solution
 
