@@ -443,9 +443,6 @@ Azure Tenant
   * Public IP - separate Azure resource allowing public connectivity from outside this VNet.
   * Network Security Group (NSG) - stateful firewall that we can associate with NICs.
  
-### Routing
-
-
 ### Subnets
 
 * Isolated private network space.
@@ -455,11 +452,22 @@ Azure Tenant
 
 ### Routing
 
-* System-default routes that are immutable.
+* System-default routes are created by default and immutable.
   * Betwen connected devices in a single subnet.
   * Between subnets in a single VNet.
   * Allowing outbound traffic from within VNets.
-* Custom routes that are user defined.
+  * No need for routing tables.
+* Custom routes:
+  * Override system routes.
+  * Usually user defined.
+  * This is done using routing tables.
+  * E.g. we can prohibit public access from within the VNet.
+  * Another example of custom routes is BGP routes (not relevant for us at this point).
+* Public routes - lead us to public internet.
+* Private routes - lead us to other internal resources in the private network space. These can exist on the VNet, but also in connected on-premise environments.
+* Routes are protected using NSGs (Layer 4 firewalls).
+* Route precedence:
+  * User-defined routes > BGP routes > System-default routes
 
 ## Network Security
 
