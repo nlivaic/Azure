@@ -458,32 +458,76 @@ Azure Tenant
   * Allowing outbound traffic from within VNets.
   * No need for routing tables.
 * Custom routes:
-  * Override system routes.
+  * Can override system routes.
   * Usually user defined.
   * This is done using routing tables.
-  * E.g. we can prohibit public access from within the VNet.
   * Another example of custom routes is BGP routes (not relevant for us at this point).
 * Public routes - lead us to public internet.
 * Private routes - lead us to other internal resources in the private network space. These can exist on the VNet, but also in connected on-premise environments.
-* Routes are protected using NSGs (Layer 4 firewalls).
+* Routes are protected using NSGs (Layer 4 or Transport Layer firewalls).
 * Route precedence:
   * User-defined routes > BGP routes > System-default routes
+ 
+#### Routing Tables
+
+* Used to configure user-defined routes.
+* Routing tables are associated with one or more subnets and impact just those subnets.
+* Examples:
+  * We can prohibit public access from within the VNet.
+  * We can route all outbound traffic (going to internet: `0.0.0.0/0`) to an IP belonging to a firewall.
+* For each resource we can check effective routes. E.g. for VMs it's under `Help` -> `Effective Routes`.
+
+## Network Peering
+
+* VNets are isolated by default. We cannot reach one VNet from another VNet.
+* Allows connecting networks across resource groups, subscriptions and tenants.
+* Bidirectional.
+* In a hub-and-spoke topology, spoke networks do not achieve connectivity just because each of them is connected to the hub.
+* Features:
+  * Speed - low latency, maximum bandwidth connection because it is routed across Microsoft's backbone.
+  * Private Connectivity - routed across Microsoft's backbone instead of the public internet.
+  * Control Traffic between VNets - NSG, custom routes.
+  * Not encrpyted - it is routed through Microsoft's private network, but inside of it traffic is NOT encrypted.
+
+## Troubleshooting Connectivity
+
+* Network Watcher is a tool that allows us to troubleshoot connectivity.
+* It gets deployed to the same region as the first VNet we deploy in that region. So once we deploy a VNet to a new region we will also get a new Network Watcher resource group in that region.
+* It consists of a set of tools (available on the portal under `Network Watcher`:
+  * IP Flow Verify - helps us understand the flow of traffic. We can provide two IPs/ports and see if they can reach each other.
+  * Next Hop - similar to `tracert`.
+  * VPN Troubleshoot
+  * NSG Diagnostics - allows us to figure out what rules will be in effect as traffic is flowing through. Based on a target and destination.
+  * Effective security rules - we can take a resource (e.g. VM) and see what the effective security rules are.
+  * Connection Troubleshoot - troubleshoot connectivity between our resources. We can specify names of resources, but we can also specify IP addresses. This one takes a bit of time and results in a downloadable file with test results. It actually includes a few of the above tools as well (NSG Diagnostics, Next Hop, but also Port Scanner and Connectivity).
+  
+* It also allows us to see the topology of our entire network across the world. We can then peek into each subnet, resources on the subnet, NICs, IP configs, peerings.
 
 ## Network Security
 
 ### Network Security Groups
 
 * Foundation of network security in Azure.
-* Type of firewall.
+* Stateful firewall.
 * Primary traffic filter for subnets.
-* Applied on subnet or individual VM level.
+* Applied on subnet or individual VM level (but typically subnet level).
 * It is a free service.
 * Allow for granular rules for fine network control:
   * Inbound/outbound filters, e.g. by protocols and ports: TCP/UDP ports, ICMP.
   * Allow sources and destinations: we can limit access to only certain networks and not the entire internet.
   * Allow or deny multiple types of traffic.
   * Priority of overlapping rules.
-  * Example: only allow RDP (TCP: 3389) access from our corporate office.
+* Examples:
+  * Only allow RDP (TCP: 3389) access from our corporate office.
+  * Allow port 80 so external calls to a VM hosting a web server can be made.
+* NSG Flow Logs allow monitoring flows of traffic.
+
+### Application Security Groups
+
+* Allow us to group resources so we can more easily apply NSG rules.
+* When defining NSG we can say that a source or a destination is an ASG. This makes it easier to manage.
+* They can be thought of as a tag applied to a group of resources.
+* Resources (e.g. VMs) are associated to ASGs - this effectively means a NIC is associated with ASGs.
 
 ### Azure Firewall
 
@@ -503,14 +547,6 @@ Azure Tenant
 * If your VM has no public IP address it cannot be access from outside.
 * Azure Bastion provides a managed jump server that can access private VMs.
 * It is a fully managed Azure service deployed to a VNet. Must have a specific subnet name.
-
-## Network Peering
-
-* Allows connecting networks across resource groups, subscriptions and tenants.
-* Features:
-  * Speed - low latency, maximum bandwidth connection because it is routed across Microsoft's backbone.
-  * Traffic Privacy - routed across Microsoft's backbone instead of the public internet.
-  * Control Traffic between VNets - NSG, custom routes.
 
 ## Azure DNS
 
