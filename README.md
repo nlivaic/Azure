@@ -458,6 +458,9 @@ Azure Tenant
 
 ### Routing
 
+* Paths for connectivity.
+* Public routes - lead us to public internet.
+* Private routes - lead us to other internal resources in the private network space. These can exist on the VNet, but also in connected on-premise environments.
 * System-default routes are created by default and immutable.
   * Betwen connected devices in a single subnet.
   * Between subnets in a single VNet.
@@ -468,8 +471,6 @@ Azure Tenant
   * Usually user defined.
   * This is done using routing tables.
   * Another example of custom routes is BGP routes (not relevant for us at this point).
-* Public routes - lead us to public internet.
-* Private routes - lead us to other internal resources in the private network space. These can exist on the VNet, but also in connected on-premise environments.
 * Routes are protected using NSGs (Layer 4 or Transport Layer firewalls).
 * Route precedence:
   * User-defined routes > BGP routes > System-default routes
@@ -488,7 +489,7 @@ Azure Tenant
 * VNets are isolated by default. We cannot reach one VNet from another VNet.
 * Allows connecting networks across resource groups, subscriptions and tenants.
 * Bidirectional.
-* In a hub-and-spoke topology, spoke networks do not achieve connectivity just because each of them is connected to the hub.
+* In a hub-and-spoke topology, spoke networks do not achieve connectivity just because each of them is connected to the hub - they are not transitive.
 * Features:
   * Speed - low latency, maximum bandwidth connection because it is routed across Microsoft's backbone.
   * Private Connectivity - routed across Microsoft's backbone instead of the public internet.
@@ -514,11 +515,12 @@ Azure Tenant
 ### Network Security Groups
 
 * Foundation of network security in Azure.
-* Stateful firewall.
-* Primary traffic filter for subnets.
+* Primary traffic filter - used to allow/deny traffic for subnets and NICs.
+* Stateful firewall - we only have to create an inbound or outboud rule and the return traffic is allowed by default due to the stateful nature.
 * Applied on subnet or individual VM level (but typically subnet level).
 * It is a free service.
-* Allow for granular rules for fine network control:
+* Allow for allowing/denying intra-subnet and intra-VNet communication.
+* Allow for network control granular rules:
   * Inbound/outbound filters, e.g. by protocols and ports: TCP/UDP ports, ICMP.
   * Allow sources and destinations: we can limit access to only certain networks and not the entire internet.
   * Allow or deny multiple types of traffic.
