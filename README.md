@@ -488,6 +488,7 @@ Azure Tenant
 
 * VNets are isolated by default. We cannot reach one VNet from another VNet.
 * Allows connecting networks across resource groups, subscriptions and tenants.
+* To allow for peering, VNets must have non-overlapping IP address spaces (to avoid routing conflicts).
 * Bidirectional.
 * In a hub-and-spoke topology, spoke networks do not achieve connectivity just because each of them is connected to the hub - they are not transitive.
 * Features:
