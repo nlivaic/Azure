@@ -487,6 +487,7 @@ Azure Tenant
 ## Network Peering
 
 * VNets are isolated by default. We cannot reach one VNet from another VNet.
+* VNet peering connects two or more virtual networks in Azure, allowing them to communicate with each other as if they are one network.
 * Allows connecting networks across resource groups, subscriptions and tenants.
 * To allow for peering, VNets must have non-overlapping IP address spaces (to avoid routing conflicts).
 * Bidirectional.
