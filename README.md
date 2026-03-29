@@ -35,6 +35,8 @@
       + [Application Security Groups](#application-security-groups)
       + [Azure Firewall](#azure-firewall)
       + [Azure Bastion](#azure-bastion)
+   * [Load Balancing](#load-balancing)
+      + [Deployment](#deployment)
    * [Azure DNS](#azure-dns)
    * [Hybrid Connection](#hybrid-connection)
    * [Azure VPN](#azure-vpn)
@@ -557,6 +559,39 @@ Azure Tenant
 * If your VM has no public IP address it cannot be access from outside.
 * Azure Bastion provides a managed jump server that can access private VMs.
 * It is a fully managed Azure service deployed to a VNet. Must have a specific subnet name.
+
+## Load Balancing
+
+* Level 4 load balancer.
+* It distributes traffic using a hash-based algorithm (5-tuple: source IP, source port, destination IP, destination port, protocol).
+* Even though it's stateless, Azure Load Balancer provides flow stickiness: once a TCP/UDP flow is established, packets in that flow go to the same backend instance.
+* Azure Load Balancer can be deployed in two configurations:
+  * As a public facing load balancer: e.g. load balancing between two identical API services.
+  * As an internal load balancer (not reachable from internet): e.g. load balancing against some internal resources.
+* Backend pool: set of resources the load balancer is routing to.
+* Requires a health probe to determine if a resource in the backend pool is available for routing to.
+* Often used with VM scale-sets, to allow scaling in and out.
+* Load balancing rules: describe how we want to load balance to backend pool resources.
+
+### Deployment
+
+* SKU:
+  * Standard: go to choice.
+  * Gateway: a way to chain load balancing with NVA solutions inside Azure.
+* Type:
+  * Public: exposed to public. Can be both regional and global (can be used to load balance across regions).
+  * Internal: only regional (can be used to load balance inside the same region as load balancer).
+* Public load balancer requires a frontend IP configuration (a PIP essentially).
+* Each load balancer requires a backend pool configured. We have to tell it which NIC or IP of the backend pool resource.
+* Inbound rules:
+  * Backend pool resources all have to listen on the same port.
+  * Specify the health probe port.
+  * Session persistence - not familiar with these.
+* Inbound NAT rules:
+  * Links load balancer's port to a specific machine in the backend pool. You don't actually specify port-to-machine mapping, but just say how many machines are in the backend pool and what the starting inbound port is, and Azure does the math.
+  * This is different from typical load balancing, as this is meant to allow access to a particular machine by providing a port number.
+  * Useful for SSH-ing into a particular machine.
+* Outbound rules: not familiar with these.
 
 ## Azure DNS
 
