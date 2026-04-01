@@ -595,9 +595,17 @@ Azure Tenant
 
 ## Azure DNS
 
-* Azure DNS Zones
-* Azure Private DNS Zones
+* Public Azure DNS Zones:
+  * Can be reached from internet.
+  * I think this also requires having your own domain.
+* Azure Private DNS Zones:
+  * Can be reached only from a VNet that it is linked to.
+  * Provides name resolutions withing VNet.
 * Both are global services (not tied to any region).
+* To be able to add a record for one of our resources we need to first link a VNet. This is done by creating a Virtual network link, where we link our DNS resource and a VNet.
+  * To create records we can either enter them manually or use auto-registration.
+  * Using auto-registration will create records for all resources on the targeted VNet. You will be able to access your resources by using name `{azure_resource_name}.{dns_resource_name}`.
+* You can see which DNS your resources are using by going to their NIC and clicking on `Settings` -> `DNS servers`. If it says "Inherit from virtual network" it means your NIC is configured to talk to the DNS that your VNet is linked to (see bulletpoint above).
 
 ## Hybrid Connection
 
