@@ -607,6 +607,36 @@ Azure Tenant
   * Using auto-registration will create records for all resources on the targeted VNet. You will be able to access your resources by using name `{azure_resource_name}.{dns_resource_name}`.
 * You can see which DNS your resources are using by going to their NIC and clicking on `Settings` -> `DNS servers`. If it says "Inherit from virtual network" it means your NIC is configured to talk to the DNS that your VNet is linked to (see bulletpoint above).
 
+## Service Endpoints
+
+* Provide secure and direct connectivity to Azure services over Azure backbone network.
+* As a starting point for discussion let's take an Azure Storage account as an example.
+  * VM can talk to Azure Storage using it's publicly exposed endpoint.
+  * The problem is such a request might get routed through a public internet or Azure backbone.
+  * There is a security risk: Azure Storage needs to be open to internet.
+  * Firewall has no idea who is talking to Azure Storage.
+<img width="469" height="377" alt="image" src="https://github.com/user-attachments/assets/0dee77f6-bc72-478c-9342-f6cfecf7f477" />
+
+* Public Service Endpoint:
+  * Forces routing through Azure backbone.
+  * Enabling a Service Endpoint Result in additional system routes in the VM's effective route table.
+  * Firewall can now identify the caller because identity of network of origin is now transmitted along with the request.
+  * This means the firewall can identity VNet or subnet and we can make ACL rule allowing only our VNet and denying access from the rest of public internet.
+  * Note: it does NOT create a PIP resource.
+ <img width="515" height="398" alt="image" src="https://github.com/user-attachments/assets/56d2b573-3f58-45b6-947e-c4027ef3cb3d" />
+
+* Private Service Endpoint:
+  * Private IP address for Azure Storage is created on our VNet.
+  * Forces routing through Azure backbone.
+  * We can remove public access to Azure Storage altogether, greatly increasing security.
+  * Azure Storage URL remains the same throughout. DNS makes this possible by associating private IP with same URL (private DNS Zone is created).
+<img width="512" height="435" alt="image" src="https://github.com/user-attachments/assets/e95913ba-5850-4872-955f-7f2cbf355d0b" />
+
+### How to configure
+
+* When looking at a list of subnets on a particular VNet we have to edit the subnet and there we can set up service endpoints. We select which type of service we want the service endpoint for. We do not select a particular resources, just which service we want the endpoint to be created for.
+* Once we setup a service endpoint we can go to a VMs `NIC` -> `Help` -> `Effective Routes` and there we will see a default system route with Azure Storage's IP address and Next Hop saying "VirtualNetworkServiceEndpoint".
+
 ## Hybrid Connection
 
 * Connecting external resources to Azure (e.g. other cloud networks, on-prem, other Azure VNets).
