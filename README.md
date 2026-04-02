@@ -38,6 +38,8 @@
    * [Load Balancing](#load-balancing)
       + [Deployment](#deployment)
    * [Azure DNS](#azure-dns)
+   * [Service Endpoints](#service-endpoints)
+      + [How to configure](#how-to-configure)
    * [Hybrid Connection](#hybrid-connection)
    * [Azure VPN](#azure-vpn)
 - [Azure Storage](#azure-storage)
