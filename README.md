@@ -631,8 +631,10 @@ Azure Tenant
   * Private IP address for Azure Storage is created on our VNet.
   * Forces routing through Azure backbone.
   * We can remove public access to Azure Storage altogether, greatly increasing security.
+  * NIC is created, connected to the subnet, associated with the private endpoint resource.
   * Azure Storage URL remains the same throughout. DNS makes this possible by associating private IP with same URL (private DNS Zone is created).
-<img width="512" height="435" alt="image" src="https://github.com/user-attachments/assets/e95913ba-5850-4872-955f-7f2cbf355d0b" />
+<img width="414" height="349" alt="image" src="https://github.com/user-attachments/assets/35e2af82-361a-4064-b3d7-aa136daa9d47" />
+
 
 ### How to configure
 
