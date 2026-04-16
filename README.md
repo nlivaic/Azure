@@ -778,6 +778,8 @@ Azure Tenant
 * Each Azure role has actions and data actions:
   * Actions - allow control plane management, which means performing operations that affect configuration or state of the resource such as creating, updating or deleting.
   * Data actions - allow performing operations on the data stored or processed on the resource, such as reading, writing or deleting the data.
+* Example: user must be an Owner of Key Vault in order to be able to assign a role to an application allowing it to read from Key Vault.
+  * Look at Entra Roles example below for the whole picture.
 
 ### Entra Roles
 
@@ -791,6 +793,8 @@ Azure Tenant
   * User Administrator - can manage users and roles.
   * Helpdesk Administrator - can reset passwords for users. Remember users should have the ability to do Self-Service Password Reset themselves, but this role is available is SSPR is not enabled.
 * Custom roles are also supported.
+* Example: user must be an Application Administrator in Entra in order to be able to register a new app in Entra.
+  * Look at Azure Roles example above for the whole picture.
 
 ## Zero Trust
 
